@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_Controller : MonoBehaviour
+public class S_CursorController : MonoBehaviour
 {
     void Update()
     {
