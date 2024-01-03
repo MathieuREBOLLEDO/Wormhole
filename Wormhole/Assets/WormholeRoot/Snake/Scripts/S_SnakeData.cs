@@ -6,14 +6,19 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "SO_Snake", menuName = "Snake/SnakeData", order = 1)]
 public class S_SnakeData : ScriptableObject
 {
-    [Header("Singleton")]
-    //public SnakeHead snake;
+    [Header("Prefab")]
+    public GameObject snakeHead;
+    public GameObject snakeBody;
+
+
 
     [Header("Datas")]
     public Quaternion snakeRotation;
 
-    public int snakeSize;
-    public int snakeSpeed;
+    public int snakeSize = 2;
+    public float snakeSpeed = 0.2f;
+
+    public int snakeBodyGap = 10;
 
     [Header ("")]    
     public Color min;

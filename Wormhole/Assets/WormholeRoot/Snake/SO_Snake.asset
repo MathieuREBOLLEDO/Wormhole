@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb46a7a2f453b849b40188624ca2597, type: 3}
+  m_Name: SO_Snake
+  m_EditorClassIdentifier: 
+  snakeHead: {fileID: 5894098479365052709, guid: afee83a5ea4cace4a9fd690807019448,
+    type: 3}
+  snakeBody: {fileID: 1113903413424857635, guid: 55f2131731cdf794e9d61bbb206f5d44,
+    type: 3}
+  snakeRotation: {x: 0, y: 0, z: 0, w: 0}
+  snakeSize: 0
+  snakeSpeed: 0.02
+  snakeBodyGap: 50
+  min: {r: 0, g: 0, b: 0, a: 0}
+  max: {r: 0, g: 0, b: 0, a: 0}

@@ -23,13 +23,12 @@ public class S_CheckBounds : MonoBehaviour
     private void CheckForBounce()
     {
         Vector3 newPosition = transform.position;
+
         if (newPosition.x < -screenBounds.x)
             newPosition.x = screenBounds.x;
 
-
         if(newPosition.x > screenBounds.x)
             newPosition.x = -screenBounds.x;
-
 
         if (newPosition.y < -screenBounds.y )
             newPosition.y = screenBounds.y;
