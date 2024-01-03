@@ -10,18 +10,11 @@ public class S_SnakeData : ScriptableObject
     public GameObject snakeHead;
     public GameObject snakeBody;
 
-
-
     [Header("Datas")]
     public Quaternion snakeRotation;
 
-    public int snakeSize = 2;
+    public int initSize = 2;
     public float snakeSpeed = 0.2f;
-
-    public int snakeBodyGap = 10;
-
-    [Header ("")]    
-    public Color min;
-    public Color max;
+    public int snakeBodyGap = 10;    
 
 }

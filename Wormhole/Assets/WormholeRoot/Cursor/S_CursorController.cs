@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum PortalStates
-{
-    Hover,
-    Unactivate,
-    Activate,
-    Destroy
-}
+
 public class S_CursorController : MonoBehaviour
 {
     public GameObject portal;
