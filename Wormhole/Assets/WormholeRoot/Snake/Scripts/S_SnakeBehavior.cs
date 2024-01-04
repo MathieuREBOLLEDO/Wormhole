@@ -18,7 +18,8 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void Awake()
     {
-        GameObject head = GameObject.Instantiate(snakeData.snakeHead,this.transform);
+        //GameObject head = GameObject.Instantiate(snakeData.snakeHead,this.transform);
+        GameObject head = GetComponentInChildren<Transform>().gameObject;
         bodyParts.Add(head);
     }
 
@@ -51,7 +52,6 @@ public class S_SnakeBehavior : MonoBehaviour
    
         if (collision.gameObject.CompareTag("Portal"))
         {
-            Debug.Log("Collision with" + collision);
             transform.position = portalManager.myPortalManager.getPortal(0).transform.position;
             transform.rotation = portalManager.myPortalManager.getPortal(0).transform.rotation;
             direction = transform.right;
