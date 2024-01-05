@@ -52,9 +52,7 @@ public class S_SnakeBehavior : MonoBehaviour
    
         if (collision.gameObject.CompareTag("Portal"))
         {
-            transform.position = portalManager.myPortalManager.getPortal(0).transform.position;
-            transform.rotation = portalManager.myPortalManager.getPortal(0).transform.rotation;
-            direction = transform.right;
+            TeleportSnake(collision.gameObject);
         }
     }
 
@@ -66,9 +64,12 @@ public class S_SnakeBehavior : MonoBehaviour
         }
     }
 
-    void TeleportSnake()
+    void TeleportSnake(GameObject portal)
     {
-
+        portalManager.myPortalManager.getPortal(portal).GetComponent<Collider>().enabled = false;
+        transform.position = portalManager.myPortalManager.getPortal(portal).transform.position;
+        transform.rotation = portalManager.myPortalManager.getPortal(portal).transform.rotation;
+        direction = transform.right;
     }
 
     private void GrowSnake()
@@ -79,7 +80,8 @@ public class S_SnakeBehavior : MonoBehaviour
         int index = 0;
         foreach(var part in bodyParts)
         {
-            part.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+            if(index!=0)
+                part.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
             index++;
         }
     }

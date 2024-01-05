@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class S_CursorController : MonoBehaviour
 {
+    [SerializeField] private S_GetPortalManager portalManager;
     public GameObject portal;
-    public float scrollSpeed = 50f;
+    [SerializeField] public float scrollSpeed = 50f;
 
     [SerializeField] private SpriteRenderer [] renderer;
 
@@ -17,7 +18,8 @@ public class S_CursorController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject.Instantiate(portal, transform.position, transform.rotation);
+            GameObject tmpPortal = GameObject.Instantiate(portal, transform.position, transform.rotation);
+            portalManager.myPortalManager.AddPortalToList(tmpPortal);
             ChangeRenderer(false);
         }
         else

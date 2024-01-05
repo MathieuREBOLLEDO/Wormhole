@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7604339844044694724}
   - component: {fileID: 9009466125650129790}
   - component: {fileID: 3079837284428366374}
-  - component: {fileID: 8614799278752232030}
   - component: {fileID: 2090128375368181284}
-  m_Layer: 0
+  - component: {fileID: 1463826339555484159}
+  m_Layer: 6
   m_Name: P_Snake_Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,27 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eb727fdd8e76c42a7790d816404019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &8614799278752232030
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420279543230723367}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2090128375368181284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,8 +88,29 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 72
   m_CollisionDetection: 0
+--- !u!65 &1463826339555484159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420279543230723367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.50512826, y: 0.50512826, z: 1}
+  m_Center: {x: -0.24743587, y: -0.005498588, z: 0}
 --- !u!1001 &8431736022106298208
 PrefabInstance:
   m_ObjectHideFlags: 0
