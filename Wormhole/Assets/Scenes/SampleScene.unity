@@ -619,12 +619,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2108629466171547612, guid: edcc42c4fc2925245a450c28bf82c48a,
-        type: 3}
-      propertyPath: portalManager
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e,
-        type: 2}
     - target: {fileID: 2269571573547734945, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
       propertyPath: m_LocalPosition.x

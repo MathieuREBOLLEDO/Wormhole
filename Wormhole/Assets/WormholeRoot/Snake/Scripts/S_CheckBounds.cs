@@ -10,10 +10,6 @@ public class S_CheckBounds : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-
-       // float camHeight = mainCamera.orthographicSize;
-       // float camWidth = camHeight * mainCamera.aspect;
-       // screenBounds = new Vector2(camWidth, camHeight);
        CalculateCameraBorders();
     }
 

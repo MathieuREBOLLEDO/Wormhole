@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa03dd3a63ac5e45a02e903431c1d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
   portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
   scrollSpeed: 50
   renderer:

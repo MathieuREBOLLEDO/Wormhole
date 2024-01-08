@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class S_SnakeBehavior : MonoBehaviour
@@ -45,6 +46,8 @@ public class S_SnakeBehavior : MonoBehaviour
             index++;
         }
 
+        AddSegment();
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,5 +87,21 @@ public class S_SnakeBehavior : MonoBehaviour
                 part.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
             index++;
         }
+
+
+        if (bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>() != null)
+        {
+            Debug.Log("Test");
+            Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>());
+        }
+
+        bodyParts[bodyParts.Count - 1].AddComponent<S_BodyBehavior>();
+        
+    }
+
+    public void DestroyPoral(GameObject portal)
+    {
+        Destroy(portalManager.myPortalManager.getPortal(portal));
+        Destroy(portal);
     }
 }
