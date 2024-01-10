@@ -17,6 +17,6 @@ MonoBehaviour:
   snakeBody: {fileID: 1113903413424857635, guid: 55f2131731cdf794e9d61bbb206f5d44,
     type: 3}
   snakeRotation: {x: 0, y: 0, z: 0, w: 0}
-  initSize: 50
+  initSize: 3
   snakeSpeed: 0.02
-  snakeBodyGap: 35
+  snakeBodyGap: 40

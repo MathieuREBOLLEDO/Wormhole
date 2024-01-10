@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using System.Drawing;
 using UnityEngine;
+//using Color = Unity.Color;
 
 public class S_SnakeBehavior : MonoBehaviour
 { 
@@ -103,7 +104,7 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             if(index!=0)
             {
-                part.GetComponent<MeshRenderer>().material.color = ColorUpdater(index); ;         
+                part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index); ;         
             }                
             index++;
         }
@@ -113,22 +114,21 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private Color ColorUpdater(int id)
     {
-        Color color;
-
+        Color colorToReturn;
         listOfAlpha[id] =  id / (float)(bodyParts.Count-1);
-
         float lerpAlpha = Mathf.Lerp(0, 1, listOfAlpha[id]);
-
+        
         if (lerpAlpha<0.5f)
         {
-            color = Color.Lerp(colorPalette.minColor,colorPalette.middleColor, lerpAlpha);
+            lerpAlpha = lerpAlpha * 2;
+            colorToReturn = Color.Lerp(colorPalette.minColor,colorPalette.middleColor, lerpAlpha);
         }
         else
-        {         
-            color = Color.Lerp(colorPalette.middleColor, colorPalette.maxColor, lerpAlpha);
+        {
+            lerpAlpha = 2 * lerpAlpha - 1;
+            colorToReturn = Color.Lerp(colorPalette.middleColor, colorPalette.maxColor, lerpAlpha);
         }
-        //Debug.Log("$<color=" + color + ">" + lerpAlpha + "</color>");
-        return color;
+        return colorToReturn;
     }
 
     private void MoveBodyBehaviorScript()
