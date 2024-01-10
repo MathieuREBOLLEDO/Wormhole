@@ -8,7 +8,7 @@ public class S_BodyBehavior : MonoBehaviour
     {        
         if (collision.gameObject.CompareTag("Portal"))
         {
-            GetComponentInParent<S_SnakeBehavior>().DestroyPoral(collision.gameObject);
+            GetComponentInParent<S_SnakeBehavior>().portalManager.myPortalManager.DestroyMultiplePortals(collision.gameObject);
         }        
     }
 }

@@ -10,14 +10,13 @@ public class S_CheckBounds : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-       CalculateCameraBorders();
+        CalculateCameraBorders();
+        DisplayGizmos();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckForBounce();
-        CalculateCameraBorders();
     }
 
     private void CheckForBounce()
@@ -41,34 +40,36 @@ public class S_CheckBounds : MonoBehaviour
 
     private void CalculateCameraBorders()
     {
-        if (mainCamera == null)
-            return;
-
-        float nearClipPlane = mainCamera.nearClipPlane;
-        float farClipPlane = mainCamera.farClipPlane;
         float aspectRatio = mainCamera.aspect;
         float fov = mainCamera.fieldOfView;
 
         float halfFov = fov * 0.5f;
-        float halfHeight = Mathf.Tan(Mathf.Deg2Rad * halfFov) * 10;//nearClipPlane;
-        float halfWidth = halfHeight * aspectRatio;
+        float halfHeight = Mathf.Tan(Mathf.Deg2Rad * halfFov) * 10 + 0.5f;//nearClipPlane;
+        float halfWidth = halfHeight * aspectRatio + 0.5f;
 
         screenBounds = new Vector2(halfWidth, halfHeight);
+    }
+
+    void DisplayGizmos()
+    {     
+        float nearClipPlane = mainCamera.nearClipPlane;
+        float farClipPlane = mainCamera.farClipPlane;
 
         // Get camera position and forward direction
         Vector3 cameraPosition = mainCamera.transform.position;
         Vector3 cameraForward = mainCamera.transform.forward;
 
         // Calculate frustum corners in world space
-        Vector3 topLeft = cameraPosition + cameraForward * nearClipPlane - mainCamera.transform.right * halfWidth + mainCamera.transform.up * halfHeight;
-        Vector3 topRight = cameraPosition + cameraForward * nearClipPlane + mainCamera.transform.right * halfWidth + mainCamera.transform.up * halfHeight;
-        Vector3 bottomLeft = cameraPosition + cameraForward * nearClipPlane - mainCamera.transform.right * halfWidth - mainCamera.transform.up * halfHeight;
-        Vector3 bottomRight = cameraPosition + cameraForward * nearClipPlane + mainCamera.transform.right * halfWidth - mainCamera.transform.up * halfHeight;
+        Vector3 topLeft = cameraPosition + cameraForward * nearClipPlane - mainCamera.transform.right * screenBounds.x + mainCamera.transform.up * screenBounds.y;
+        Vector3 topRight = cameraPosition + cameraForward * nearClipPlane + mainCamera.transform.right * screenBounds.x + mainCamera.transform.up * screenBounds.y;
+        Vector3 bottomLeft = cameraPosition + cameraForward * nearClipPlane - mainCamera.transform.right * screenBounds.x - mainCamera.transform.up * screenBounds.y;
+        Vector3 bottomRight = cameraPosition + cameraForward * nearClipPlane + mainCamera.transform.right * screenBounds.x - mainCamera.transform.up * screenBounds.y;
 
         // Draw lines to represent frustum borders
         Debug.DrawLine(topLeft, topRight, Color.red);
         Debug.DrawLine(topRight, bottomRight, Color.red);
         Debug.DrawLine(bottomRight, bottomLeft, Color.red);
         Debug.DrawLine(bottomLeft, topLeft, Color.red);
+
     }
 }

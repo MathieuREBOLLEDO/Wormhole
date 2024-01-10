@@ -9,12 +9,16 @@ public class S_SnakeBehavior : MonoBehaviour
     public S_SnakeColorPalette colorPalette;
 
     [Header("")]
-    [SerializeField] private S_GetPortalManager portalManager;
+    [SerializeField] public S_GetPortalManager portalManager;
 
     private Vector3 direction;
 
     private List <GameObject> bodyParts = new List <GameObject>();
     private List <Vector3> positionHistory = new List <Vector3>();
+
+    public List <float> listOfAlpha = new List<float>();
+
+    bool isDead = false;
     
 
     void Awake()
@@ -22,31 +26,35 @@ public class S_SnakeBehavior : MonoBehaviour
         //GameObject head = GameObject.Instantiate(snakeData.snakeHead,this.transform);
         GameObject head = GetComponentInChildren<Transform>().gameObject;
         bodyParts.Add(head);
+        listOfAlpha.Add(0f);
     }
 
     void Start()
     {
         direction = transform.right;
 
-        for (int i = 0;i <snakeData.initSize;i++) 
-            GrowSnake();        
+        StartCoroutine(InitSnake(0.5f));
     }
 
     void Update()
     {
-        transform.position += direction * snakeData.snakeSpeed;
-
-        positionHistory.Insert(0, transform.position);
-
-        int index = 0;
-        foreach (var body in bodyParts) 
+        if (!isDead)
         {
-            Vector3 point = positionHistory[Mathf.Min(index*snakeData.snakeBodyGap,positionHistory.Count-1)];
-            body.transform.position = point;
-            index++;
-        }
+            transform.position += direction * snakeData.snakeSpeed;
 
-        AddSegment();
+            positionHistory.Insert(0, transform.position);
+
+            int index = 0;
+            foreach (var body in bodyParts)
+            {
+                Vector3 point = positionHistory[Mathf.Min(index * snakeData.snakeBodyGap, positionHistory.Count - 1)];
+                body.transform.position = point;
+
+                index++;
+            }
+
+            AddSegment();
+        }
 
     }
 
@@ -55,7 +63,15 @@ public class S_SnakeBehavior : MonoBehaviour
    
         if (collision.gameObject.CompareTag("Portal"))
         {
-            TeleportSnake(collision.gameObject);
+            if(portalManager.myPortalManager.CheckForLink(collision.gameObject))
+            {
+                TeleportSnake(collision.gameObject);
+            }
+            else
+            {
+                portalManager.myPortalManager.DestroyPortal(collision.gameObject);
+            }
+            
         }
     }
 
@@ -69,9 +85,9 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void TeleportSnake(GameObject portal)
     {
-        portalManager.myPortalManager.getPortal(portal).GetComponent<Collider>().enabled = false;
-        transform.position = portalManager.myPortalManager.getPortal(portal).transform.position;
-        transform.rotation = portalManager.myPortalManager.getPortal(portal).transform.rotation;
+        portalManager.myPortalManager.GetPortal(portal).GetComponent<Collider>().enabled = false;
+        transform.position = portalManager.myPortalManager.GetPortal(portal).transform.position;
+        transform.rotation = portalManager.myPortalManager.GetPortal(portal).transform.rotation;
         direction = transform.right;
     }
 
@@ -79,29 +95,63 @@ public class S_SnakeBehavior : MonoBehaviour
     {
         GameObject body = GameObject.Instantiate(snakeData.snakeBody, this.transform);
         bodyParts.Add(body);
+        listOfAlpha.Add(0f);
 
         int index = 0;
+
         foreach(var part in bodyParts)
         {
             if(index!=0)
-                part.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+            {
+                part.GetComponent<MeshRenderer>().material.color = ColorUpdater(index); ;         
+            }                
             index++;
         }
 
+        MoveBodyBehaviorScript();
+    }
 
+    private Color ColorUpdater(int id)
+    {
+        Color color;
+
+        listOfAlpha[id] =  id / (float)(bodyParts.Count-1);
+
+        float lerpAlpha = Mathf.Lerp(0, 1, listOfAlpha[id]);
+
+        if (lerpAlpha<0.5f)
+        {
+            color = Color.Lerp(colorPalette.minColor,colorPalette.middleColor, lerpAlpha);
+        }
+        else
+        {         
+            color = Color.Lerp(colorPalette.middleColor, colorPalette.maxColor, lerpAlpha);
+        }
+        //Debug.Log("$<color=" + color + ">" + lerpAlpha + "</color>");
+        return color;
+    }
+
+    private void MoveBodyBehaviorScript()
+    {
         if (bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>() != null)
         {
-            Debug.Log("Test");
             Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>());
         }
 
         bodyParts[bodyParts.Count - 1].AddComponent<S_BodyBehavior>();
-        
     }
 
-    public void DestroyPoral(GameObject portal)
+    public void CallDeath()
     {
-        Destroy(portalManager.myPortalManager.getPortal(portal));
-        Destroy(portal);
+        Debug.Log("$<color=red>DEATH!!!</color");
+        isDead = true;
+    }
+
+    IEnumerator InitSnake(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        for (int i = 0; i < snakeData.initSize; i++)
+            GrowSnake();
     }
 }
