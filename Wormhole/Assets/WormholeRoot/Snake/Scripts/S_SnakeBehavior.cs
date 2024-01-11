@@ -17,7 +17,7 @@ public class S_SnakeBehavior : MonoBehaviour
     private List <GameObject> bodyParts = new List <GameObject>();
     private List <Vector3> positionHistory = new List <Vector3>();
 
-    public List <float> listOfAlpha = new List<float>();
+    private List <float> listOfAlpha = new List<float>();
 
     bool isDead = false;
     
@@ -41,6 +41,8 @@ public class S_SnakeBehavior : MonoBehaviour
     {
         if (!isDead)
         {
+            AddSegment();
+
             transform.position += direction * snakeData.snakeSpeed;
 
             positionHistory.Insert(0, transform.position);
@@ -52,11 +54,8 @@ public class S_SnakeBehavior : MonoBehaviour
                 body.transform.position = point;
 
                 index++;
-            }
-
-            AddSegment();
+            }            
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -143,7 +142,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
     public void CallDeath()
     {
-        Debug.Log("$<color=red>DEATH!!!</color");
+        Debug.Log("$<color=red>DEATH!!!</color>");
         isDead = true;
     }
 

@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6355590196455530111}
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeData: {fileID: 11400000, guid: 2e812cc1e554354408043e18df4c888c, type: 2}
-  colorPalette: {fileID: 11400000, guid: 95c8d6b73fb2ffb4999f751b6f181ff7, type: 2}
+  colorPalette: {fileID: 11400000, guid: e51c4d8a76124aa4c87bdb10e2579cc2, type: 2}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
 --- !u!114 &3079837284428366374
 MonoBehaviour:
