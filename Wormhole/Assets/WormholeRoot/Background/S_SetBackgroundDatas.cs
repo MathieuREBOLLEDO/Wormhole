@@ -10,6 +10,5 @@ public class S_SetBackgroundDatas : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.SetColor("_TileColor", data.tileColor);
         GetComponent<MeshRenderer>().material.SetColor("_BorderColor", data.borderColor);
-        Debug.Log("Set Color background");
     }
 }
