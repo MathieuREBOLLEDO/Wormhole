@@ -60,18 +60,23 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-   
-        if (collision.gameObject.CompareTag("Portal"))
+        GameObject objecCollide = collision.gameObject;
+        if (objecCollide.CompareTag("Portal"))
         {
-            if(portalManager.myPortalManager.CheckForLink(collision.gameObject))
+            if(portalManager.myPortalManager.CheckForLink(objecCollide))
             {
-                TeleportSnake(collision.gameObject);
+                TeleportSnake(objecCollide);
             }
             else
             {
-                portalManager.myPortalManager.DestroyPortal(collision.gameObject);
+                portalManager.myPortalManager.DestroyPortal(objecCollide);
             }
             
+        }
+
+        if(objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
+        {
+            objecCollide.GetComponent<IEatable>().Eat();
         }
     }
 

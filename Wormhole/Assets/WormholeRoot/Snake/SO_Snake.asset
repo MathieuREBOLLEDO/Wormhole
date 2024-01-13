@@ -19,4 +19,4 @@ MonoBehaviour:
   snakeRotation: {x: 0, y: 0, z: 0, w: 0}
   initSize: 3
   snakeSpeed: 0.02
-  snakeBodyGap: 40
+  snakeBodyGap: 30

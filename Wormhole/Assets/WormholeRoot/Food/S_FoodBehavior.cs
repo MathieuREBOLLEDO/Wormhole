@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class S_FoodBehavior :MonoBehaviour, IEatable
 {
+    [SerializeField]
+    private float rotationSpeed;
+    private Vector3 rotationAxis;
+
     public void Eat()
     {
+        Destroy(gameObject);
+    }
 
+    void Start()
+    {
+        rotationAxis = transform.up;
+    }
+
+    void Update ()
+    {
+        transform.rotation *= Quaternion.AngleAxis(rotationSpeed,rotationAxis);
     }
 }
