@@ -58,6 +58,11 @@ public class S_SnakeBehavior : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         GameObject objecCollide = collision.gameObject;
