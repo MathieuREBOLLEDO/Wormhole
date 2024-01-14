@@ -22,4 +22,18 @@ public class S_FoodBehavior :MonoBehaviour, IEatable
     {
         transform.rotation *= Quaternion.AngleAxis(rotationSpeed,rotationAxis);
     }
+
+    public void SetFood()
+    {
+
+    }
+    private void SetColor()
+    {
+
+    }
+
+    private void SetPoints()
+    {
+
+    }
 }

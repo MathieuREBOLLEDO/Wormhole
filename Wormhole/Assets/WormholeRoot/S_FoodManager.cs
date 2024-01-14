@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FoodType
+{
+    Base,
+    Rare,
+    Legendary,
+}
+
 public class S_FoodManager : MonoBehaviour
 {
     private Vector2 screenBounds;
@@ -23,11 +30,17 @@ public class S_FoodManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        border.DisplayGizmos(screenBounds, Color.green);
+        border.DisplayGizmos(screenBounds, Color.black);
     }
 
     private void SpawFood()
     {
-        GameObject food = Instantiate(myFood);
+        Vector3 posToAppear = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y), 0); ;
+        
+        GameObject food = Instantiate(myFood, posToAppear,Quaternion.AngleAxis(Random.Range(0,360f),Vector3.up));
+        food.GetComponent<S_FoodBehavior>().SetFood();
+
     }
+
+    
 }
