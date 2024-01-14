@@ -13,7 +13,7 @@ public class S_HeadBehavior : MonoBehaviour
             Destroy(this);
         }
     }
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == 8)
@@ -22,5 +22,5 @@ public class S_HeadBehavior : MonoBehaviour
             Destroy(GetComponent<Collider>());
             Destroy(this);
         }
-    }
+    }*/
 }

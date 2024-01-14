@@ -60,9 +60,26 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        
-    }
+        GameObject objecCollide = collision.gameObject;
+        if (objecCollide.CompareTag("Portal"))
+        {
+            if (portalManager.myPortalManager.CheckForLink(objecCollide))
+            {
+                TeleportSnake(objecCollide);
+            }
+            else
+            {
+                portalManager.myPortalManager.DestroyPortal(objecCollide);
+            }
 
+        }
+
+        if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
+        {
+            objecCollide.GetComponent<IEatable>().Eat();
+        }
+    }
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         GameObject objecCollide = collision.gameObject;
@@ -83,7 +100,7 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             objecCollide.GetComponent<IEatable>().Eat();
         }
-    }
+    }*/
 
     void AddSegment()
     {
