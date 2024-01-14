@@ -15,6 +15,6 @@ public class S_SnakeData : ScriptableObject
 
     public int initSize = 2;
     public float snakeSpeed = 0.2f;
-    public int snakeBodyGap = 10;    
+    public int snakeBodyGap = 10;
 
 }

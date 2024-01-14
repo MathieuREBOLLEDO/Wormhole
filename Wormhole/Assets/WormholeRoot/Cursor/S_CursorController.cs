@@ -9,7 +9,15 @@ public class S_CursorController : MonoBehaviour
     public GameObject portal;
     [SerializeField] public float scrollSpeed = 50f;
 
+    private Vector2 screenBounds;
+    [SerializeField] private S_CameraBorder border;
+
     [SerializeField] private SpriteRenderer [] renderer;
+
+    void Start()
+    {
+        screenBounds = border.GetCameraBorder(-0.5f);
+    }
 
     void Update()
     {
@@ -38,5 +46,10 @@ public class S_CursorController : MonoBehaviour
                 rend.color.b,
                 (isActivate ?  0.3f  : 0f)); 
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        border.DisplayGizmos(screenBounds, Color.blue);
     }
 }

@@ -17,6 +17,7 @@ public class S_SnakeBehavior : MonoBehaviour
     private List <GameObject> bodyParts = new List <GameObject>();
     private List <Vector3> positionHistory = new List <Vector3>();
 
+    
     private List <float> listOfAlpha = new List<float>();
 
     bool isDead = false;
@@ -77,30 +78,9 @@ public class S_SnakeBehavior : MonoBehaviour
         if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
         {
             objecCollide.GetComponent<IEatable>().Eat();
+            GrowSnake();
         }
-    }
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject objecCollide = collision.gameObject;
-        if (objecCollide.CompareTag("Portal"))
-        {
-            if(portalManager.myPortalManager.CheckForLink(objecCollide))
-            {
-                TeleportSnake(objecCollide);
-            }
-            else
-            {
-                portalManager.myPortalManager.DestroyPortal(objecCollide);
-            }
-            
-        }
-
-        if(objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
-        {
-            objecCollide.GetComponent<IEatable>().Eat();
-        }
-    }*/
+    }  
 
     void AddSegment()
     {
@@ -127,15 +107,15 @@ public class S_SnakeBehavior : MonoBehaviour
         int index = 0;
 
         foreach(var part in bodyParts)
-        {
-            if(index!=0)
+        {            
+            if (index!=0)
             {
-                part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index); ;         
+                part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index);               
             }                
             index++;
         }
 
-        MoveBodyBehaviorScript();
+        MoveBodyBehavior();
     }
 
     private Color ColorUpdater(int id)
@@ -157,7 +137,7 @@ public class S_SnakeBehavior : MonoBehaviour
         return colorToReturn;
     }
 
-    private void MoveBodyBehaviorScript()
+    private void MoveBodyBehavior()
     {
         if (bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>() != null)
         {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7604339844044694724}
   - component: {fileID: 9009466125650129790}
+  - component: {fileID: 9205134292928222025}
   - component: {fileID: 3079837284428366374}
   - component: {fileID: 2090128375368181284}
   - component: {fileID: 1463826339555484159}
@@ -51,6 +52,19 @@ MonoBehaviour:
   snakeData: {fileID: 11400000, guid: 2e812cc1e554354408043e18df4c888c, type: 2}
   colorPalette: {fileID: 11400000, guid: e51c4d8a76124aa4c87bdb10e2579cc2, type: 2}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
+--- !u!114 &9205134292928222025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420279543230723367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24680b8d388601e48b982afc42aa5725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &3079837284428366374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eb727fdd8e76c42a7790d816404019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  border: {fileID: 9205134292928222025}
 --- !u!54 &2090128375368181284
 Rigidbody:
   m_ObjectHideFlags: 0
