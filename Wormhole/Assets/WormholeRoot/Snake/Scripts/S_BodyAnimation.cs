@@ -14,12 +14,7 @@ public class S_BodyAnimation : MonoBehaviour
         startTime = Time.time + Random.Range(0f,1);    
     }
 
-    private void Update()
-    {
-        AnimateBody();
-    }
-
-    private void AnimateBody()
+    public void AnimateBody()
     {
         // Calculate the vertical position using a sine wave
         float yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude;

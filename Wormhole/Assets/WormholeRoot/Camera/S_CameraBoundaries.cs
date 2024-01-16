@@ -2,27 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_CameraBorder : MonoBehaviour
+public enum CameraType
 {
+    Orthographic,
+    Perspective,
+}
+
+
+[CreateAssetMenu(fileName ="SO_CameraBoundaries", menuName = "Level/CameraBoundaries", order = 1)]
+public class S_CameraBoundaries : ScriptableObject
+{
+    [SerializeField] private CameraType cameraType;
     [SerializeField] private Camera mainCamera;
-
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
-
     public Vector2 GetCameraBorder(float offset)
     {
-        float aspectRatio = mainCamera.aspect;
-        float fov = mainCamera.fieldOfView;
+        float halfHeight, halfWidth;
 
-        float halfFov = fov * 0.5f;
-        float halfHeight = Mathf.Tan(Mathf.Deg2Rad * halfFov) * 10 + offset;//nearClipPlane;
-        float halfWidth = halfHeight * aspectRatio + 0.5f;
+        if( cameraType == CameraType.Orthographic)
+        {
+             halfHeight = Camera.main.orthographicSize + offset;
+             halfWidth = halfHeight * Camera.main.aspect + (offset/2);
+        }
+        else
+        {
+            float aspectRatio = mainCamera.aspect;
+            float fov = mainCamera.fieldOfView;
 
-       // screenBounds = new Vector2(halfWidth, halfHeight);
+            float halfFov = fov * 0.5f;
+            halfHeight = Mathf.Tan(Mathf.Deg2Rad * halfFov) * 10 + offset;//nearClipPlane;
+            halfWidth = halfHeight * aspectRatio + 0.5f;
+        }        
 
-        return new Vector2(halfWidth, halfHeight); 
+        return new Vector2(halfWidth, halfHeight);
     }
 
     public void DisplayGizmos(Vector2 screenBoundaries, Color color)
@@ -47,3 +58,4 @@ public class S_CameraBorder : MonoBehaviour
         Debug.DrawLine(bottomLeft, topLeft, color);
     }
 }
+

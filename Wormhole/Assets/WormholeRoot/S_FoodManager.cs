@@ -12,14 +12,14 @@ public enum FoodType
 public class S_FoodManager : MonoBehaviour
 {
     private Vector2 screenBounds;
-    [SerializeField] private S_CameraBorder border;
+    [SerializeField] private S_CameraBoundaries cameraBoundaries;
 
     [SerializeField] private GameObject myFood;
 
     // Start is called before the first frame update
     void Start()
     {
-        screenBounds = border.GetCameraBorder(-1.5f);
+        screenBounds = cameraBoundaries.GetCameraBorder(-1.5f);
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class S_FoodManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        border.DisplayGizmos(screenBounds, Color.black);
+        cameraBoundaries.DisplayGizmos(screenBounds, Color.black);
     }
 
     private void SpawFood()

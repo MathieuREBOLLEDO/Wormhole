@@ -178,7 +178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2269571573547734945}
   - component: {fileID: 2108629466171547612}
-  - component: {fileID: 9000042872858393020}
   m_Layer: 0
   m_Name: P_Cursor
   m_TagString: Untagged
@@ -218,20 +217,7 @@ MonoBehaviour:
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
   portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
   scrollSpeed: 50
-  border: {fileID: 9000042872858393020}
+  cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
   renderer:
   - {fileID: 8390980986095362049}
   - {fileID: 6544026742869572178}
---- !u!114 &9000042872858393020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538864500295107707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24680b8d388601e48b982afc42aa5725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}

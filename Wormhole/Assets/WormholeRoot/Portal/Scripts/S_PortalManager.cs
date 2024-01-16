@@ -13,26 +13,7 @@ public class S_PortalManager : MonoBehaviour
     {
         instancePortalManager.myPortalManager = this;
     }
-    /*
-    void Start()
-    {
-        portalList.Add(GameObject.FindGameObjectWithTag("Portal"));
-    }
-    */
 
-    private void Update()
-    {
-        if( Input.GetKeyDown(KeyCode.Space) ) 
-        {
-            foreach (var portal in portalList)
-            {
-                string color = (indexDebug % 2 != 0) ? "red" : "blue";
-                Debug.Log("$<color=" + color + ">" + portal + "</color>");
-            }
-            indexDebug++;
-        }
-        
-    }
 
     public GameObject GetPortal(GameObject portalTofind)
     {

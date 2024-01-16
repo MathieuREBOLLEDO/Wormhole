@@ -25,7 +25,7 @@ public class S_FoodBehavior :MonoBehaviour, IEatable
 
     public void SetFood()
     {
-
+               
     }
     private void SetColor()
     {

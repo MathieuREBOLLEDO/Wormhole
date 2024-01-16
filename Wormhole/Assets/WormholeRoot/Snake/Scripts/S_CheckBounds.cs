@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class S_CheckBounds : MonoBehaviour
 {
-    private Vector2 screenBounds;
-    [SerializeField]private S_CameraBorder border;
+    private Vector2 screenBounds;   
+    [SerializeField] private S_CameraBoundaries cameraBounds;
     
 
     void Start()
     {    
-        screenBounds = border.GetCameraBorder(0.5f);
+        screenBounds = cameraBounds.GetCameraBorder(0.15f);
     }
 
     void Update()
@@ -20,8 +20,9 @@ public class S_CheckBounds : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-       border.DisplayGizmos(screenBounds, Color.red);
+        cameraBounds.DisplayGizmos(screenBounds, Color.red);
     }
+
 
     private void CheckForBounce()
     {

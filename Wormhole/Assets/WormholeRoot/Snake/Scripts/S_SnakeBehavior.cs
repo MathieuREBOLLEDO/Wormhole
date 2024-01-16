@@ -14,7 +14,9 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private Vector3 direction;
 
-    private List <GameObject> bodyParts = new List <GameObject>();
+    public List <GameObject> bodyParts = new List <GameObject>();
+    public List <S_BodyAnimation> bodyAnimations = new List <S_BodyAnimation>();
+
     private List <Vector3> positionHistory = new List <Vector3>();
 
     
@@ -26,15 +28,15 @@ public class S_SnakeBehavior : MonoBehaviour
     void Awake()
     {
         //GameObject head = GameObject.Instantiate(snakeData.snakeHead,this.transform);
-        GameObject head = GetComponentInChildren<Transform>().gameObject;
-        bodyParts.Add(head);
-        listOfAlpha.Add(0f);
+        S_BodyAnimation head = GetComponentInChildren<S_BodyAnimation>();
+        bodyParts.Add(head.gameObject);
+        bodyAnimations.Add(head);
+        listOfAlpha.Add(0f);        
     }
 
     void Start()
     {
         direction = transform.right;
-
         StartCoroutine(InitSnake(0.5f));
     }
 
@@ -53,8 +55,9 @@ public class S_SnakeBehavior : MonoBehaviour
             {
                 Vector3 point = positionHistory[Mathf.Min(index * snakeData.snakeBodyGap, positionHistory.Count - 1)];
                 body.transform.position = point;
-
+                bodyAnimations[index].AnimateBody();
                 index++;
+                
             }            
         }
     }
@@ -88,6 +91,12 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             GrowSnake();
         }
+
+        /*
+        if( Input.GetMouseButtonDown(0))
+        {
+            GrowSnake();
+        }*/
     }
 
     void TeleportSnake(GameObject portal)
@@ -102,6 +111,7 @@ public class S_SnakeBehavior : MonoBehaviour
     {
         GameObject body = GameObject.Instantiate(snakeData.snakeBody, this.transform);
         bodyParts.Add(body);
+        bodyAnimations.Add(body.GetComponent<S_BodyAnimation>());
         listOfAlpha.Add(0f);
 
         int index = 0;

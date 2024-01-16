@@ -6,33 +6,33 @@ using UnityEngine;
 public class S_CursorController : MonoBehaviour
 {
     [SerializeField] private S_GetPortalManager portalManager;
-    public GameObject portal;
+    [SerializeField] private GameObject portal;
     [SerializeField] public float scrollSpeed = 50f;
 
     private Vector2 screenBounds;
-    [SerializeField] private S_CameraBorder border;
+    [SerializeField] private S_CameraBoundaries cameraBoundaries;
 
     [SerializeField] private SpriteRenderer [] renderer;
 
     void Start()
     {
-        screenBounds = border.GetCameraBorder(-0.5f);
+        screenBounds = cameraBoundaries.GetCameraBorder(-0.5f);
     }
 
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, 10f));
         transform.position = mousePos;
-
-        if (Input.GetMouseButtonDown(0))
+        
+        if (Input.GetMouseButtonDown(0) )
         {
             GameObject tmpPortal = GameObject.Instantiate(portal, transform.position, transform.rotation);
             portalManager.myPortalManager.AddPortalToList(tmpPortal);
-            ChangeRenderer(false);
+            //ChangeRenderer(false);
         }
-        else
-            ChangeRenderer(true);
-
+        //else
+            //ChangeRenderer(true);
+        
         transform.rotation = Quaternion.AngleAxis(Input.GetAxis("Mouse ScrollWheel") * scrollSpeed, Vector3.forward)* transform.rotation;
     }
 
@@ -50,6 +50,6 @@ public class S_CursorController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        border.DisplayGizmos(screenBounds, Color.blue);
+        cameraBoundaries.DisplayGizmos(screenBounds, Color.blue);
     }
 }
