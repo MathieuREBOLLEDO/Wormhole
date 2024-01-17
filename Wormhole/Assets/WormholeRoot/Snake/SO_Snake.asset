@@ -18,5 +18,5 @@ MonoBehaviour:
     type: 3}
   snakeRotation: {x: 0, y: 0, z: 0, w: 0}
   initSize: 3
-  snakeSpeed: 0.02
+  snakeSpeed: 5
   snakeBodyGap: 30

@@ -46,7 +46,7 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             AddSegment();
 
-            transform.position += direction * snakeData.snakeSpeed;
+            transform.position += direction * snakeData.snakeSpeed * Time.deltaTime;
 
             positionHistory.Insert(0, transform.position);
 
