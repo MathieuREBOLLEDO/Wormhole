@@ -20,7 +20,7 @@ public class S_FoodBehavior :MonoBehaviour, IEatable
 
     void Update ()
     {
-        transform.rotation *= Quaternion.AngleAxis(rotationSpeed,rotationAxis);
+        transform.rotation *= Quaternion.AngleAxis(rotationSpeed*Time.deltaTime,rotationAxis);
     }
 
     public void SetFood()

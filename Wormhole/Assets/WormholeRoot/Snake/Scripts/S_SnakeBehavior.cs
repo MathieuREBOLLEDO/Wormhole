@@ -14,11 +14,10 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private Vector3 direction;
 
-    public List <GameObject> bodyParts = new List <GameObject>();
-    public List <S_BodyAnimation> bodyAnimations = new List <S_BodyAnimation>();
+    private List <GameObject> bodyParts = new List <GameObject>();
+    private List <S_BodyAnimation> bodyAnimations = new List <S_BodyAnimation>();
 
     private List <Vector3> positionHistory = new List <Vector3>();
-
     
     private List <float> listOfAlpha = new List<float>();
 

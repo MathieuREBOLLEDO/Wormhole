@@ -712,10 +712,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BorderColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BorderColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TileColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TileColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1 &2114693849
 GameObject:
@@ -763,6 +763,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -779,22 +794,22 @@ PrefabInstance:
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.77114624
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.636658
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
@@ -809,7 +824,7 @@ PrefabInstance:
     - target: {fileID: 7604339844044694724, guid: 363524535577f0042ad8ef9d30775fff,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 79.086
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1239,6 +1254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Food
       objectReference: {fileID: 0}
+    - target: {fileID: 7319817998317264034, guid: e25eebd0093b0d347b839468d3c6e784,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8032994719656860335, guid: e25eebd0093b0d347b839468d3c6e784,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1247,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 8032994719656860335, guid: e25eebd0093b0d347b839468d3c6e784,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.047
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 8032994719656860335, guid: e25eebd0093b0d347b839468d3c6e784,
         type: 3}
