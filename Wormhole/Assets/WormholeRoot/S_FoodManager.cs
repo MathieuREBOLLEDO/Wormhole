@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum FoodType
-{
-    Base,
-    Rare,
-    Legendary,
-}
 
 public class S_FoodManager : MonoBehaviour
 {
