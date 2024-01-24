@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb46a7a2f453b849b40188624ca2597, type: 3}
-  m_Name: SO_Snake
+  m_Script: {fileID: 11500000, guid: 0ec89ab4063682b4f83e95a94bf87e2e, type: 3}
+  m_Name: SO_Snake_Prefabs
   m_EditorClassIdentifier: 
   snakeHead: {fileID: 5894098479365052709, guid: afee83a5ea4cace4a9fd690807019448,
     type: 3}
   snakeBody: {fileID: 1113903413424857635, guid: 55f2131731cdf794e9d61bbb206f5d44,
     type: 3}
-  snakeRotation: {x: 0, y: 0, z: 0, w: 0}
-  initSize: 3
-  snakeSpeed: 5
-  snakeBodyGap: 15

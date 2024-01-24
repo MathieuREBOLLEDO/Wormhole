@@ -5,7 +5,8 @@ using UnityEngine;
 public class S_FoodBehavior :MonoBehaviour, IEatable
 {
     [SerializeField]
-    private float rotationSpeed;
+    [Range(0f, 360f)]
+    private float rotationSpeed;    
     private Vector3 rotationAxis;
 
     public void Eat()

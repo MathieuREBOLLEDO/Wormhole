@@ -16,10 +16,8 @@ public class S_BodyAnimation : MonoBehaviour
 
     public void AnimateBody()
     {
-        // Calculate the vertical position using a sine wave
         float yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude;
 
-        // Update the object's position
         bodyRenderer.transform.localPosition = new Vector3(bodyRenderer.transform.localPosition.x, yPos, bodyRenderer.transform.localPosition.z);
     }
 }

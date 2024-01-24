@@ -7,6 +7,7 @@ using UnityEngine;
 public class S_SnakeBehavior : MonoBehaviour
 { 
     public S_SnakeData snakeData;
+    public S_SnakePrefab snakePrefab;
     public S_SnakeColorPalette colorPalette;
 
     [Header("")]
@@ -26,7 +27,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void Awake()
     {
-        //GameObject head = GameObject.Instantiate(snakeData.snakeHead,this.transform);
+        //GameObject head = GameObject.Instantiate(snakePrefab.snakeHead,this.transform);
         S_BodyAnimation head = GetComponentInChildren<S_BodyAnimation>();
         bodyParts.Add(head.gameObject);
         bodyAnimations.Add(head);
@@ -108,7 +109,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private void GrowSnake()
     {
-        GameObject body = GameObject.Instantiate(snakeData.snakeBody, this.transform);
+        GameObject body = GameObject.Instantiate(snakePrefab.snakeBody, this.transform);
         bodyParts.Add(body);
         bodyAnimations.Add(body.GetComponent<S_BodyAnimation>());
         listOfAlpha.Add(0f);

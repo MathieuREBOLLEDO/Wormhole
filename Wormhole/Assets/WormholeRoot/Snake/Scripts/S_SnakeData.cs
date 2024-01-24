@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "SO_Snake", menuName = "Snake/SnakeData", order = 1)]
+[CreateAssetMenu(fileName = "SO_Snake Datas", menuName = "Snake/Snake Data", order = 0)]
 public class S_SnakeData : ScriptableObject
-{
-    [Header("Prefab")]
-    public GameObject snakeHead;
-    public GameObject snakeBody;
-
+{   
     [Header("Datas")]
-    public Quaternion snakeRotation;
+    //public Quaternion snakeRotation;
 
     public int initSize = 2;
+    [Range(1f , 20f)]
     public float snakeSpeed = 0.2f;
+    [Range(10 , 50)]
     public int snakeBodyGap = 10;
 
 }

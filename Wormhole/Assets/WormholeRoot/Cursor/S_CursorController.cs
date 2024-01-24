@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class S_CursorController : MonoBehaviour
@@ -8,6 +9,8 @@ public class S_CursorController : MonoBehaviour
     [SerializeField] private S_GetPortalManager portalManager;
     [SerializeField] private GameObject portal;
     [SerializeField] public float scrollSpeed = 50f;
+
+    private InputAction touchPressAction;
 
     private Vector2 screenBounds;
     [SerializeField] private S_CameraBoundaries cameraBoundaries;
@@ -35,6 +38,19 @@ public class S_CursorController : MonoBehaviour
         
         transform.rotation = Quaternion.AngleAxis(Input.GetAxis("Mouse ScrollWheel") * scrollSpeed, Vector3.forward)* transform.rotation;
     }
+
+    private void OnEnable()
+    {
+        touchPressAction.performed += TouchPressed; 
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    private void TouchPressed(InputAction.CallbackContext context) 
+    { }
 
     void ChangeRenderer(bool isActivate)
     {

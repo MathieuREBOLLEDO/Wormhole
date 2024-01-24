@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SO_AnimationData", menuName = "Snake/AnimationData", order = 3)]
+[CreateAssetMenu(fileName = "SO_AnimationData", menuName = "Snake/Animation Data", order = 2)]
 
 public class S_AnimationDatas : ScriptableObject
 {
