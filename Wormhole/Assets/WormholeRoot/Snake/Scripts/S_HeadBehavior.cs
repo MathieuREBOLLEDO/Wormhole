@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_HeadBehavior : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {      
         if (collision.gameObject.layer == 8)
         {

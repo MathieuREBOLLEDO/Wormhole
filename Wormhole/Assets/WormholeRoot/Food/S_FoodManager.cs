@@ -29,9 +29,7 @@ public class S_FoodManager : MonoBehaviour
     {
         while (true)
         {
-            // Call your method here
             SpawFood();
-            Debug.Log("Call");
             float randomTime = Random.Range(1f, 5f); // Change the range as needed
             yield return new WaitForSeconds(randomTime); // Wait for a random time
         }
@@ -39,7 +37,6 @@ public class S_FoodManager : MonoBehaviour
 
     private void SpawFood()
     {
-        Debug.Log("Call Spawn");
         Vector3 posToAppear = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y), 0);
         
         GameObject food = Instantiate(myFood, posToAppear,Quaternion.AngleAxis(Random.Range(0,360f),Vector3.up),transform);

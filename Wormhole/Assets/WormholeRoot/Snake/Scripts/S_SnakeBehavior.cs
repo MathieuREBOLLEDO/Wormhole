@@ -62,7 +62,7 @@ public class S_SnakeBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject objecCollide = collision.gameObject;
         if (objecCollide.CompareTag("Portal"))
@@ -101,7 +101,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void TeleportSnake(GameObject portal)
     {
-        portalManager.myPortalManager.GetPortal(portal).GetComponent<Collider>().enabled = false;
+        portalManager.myPortalManager.GetPortal(portal).GetComponent<Collider2D>().enabled = false;
         transform.position = portalManager.myPortalManager.GetPortal(portal).transform.position;
         transform.rotation = portalManager.myPortalManager.GetPortal(portal).transform.rotation;
         direction = transform.right;
