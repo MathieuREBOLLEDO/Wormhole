@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 //using System.Drawing;
@@ -12,6 +13,15 @@ public class S_SnakeBehavior : MonoBehaviour
 
     [Header("")]
     [SerializeField] public S_GetPortalManager portalManager;
+
+    [Header("Feedbacks")]
+    public MMF_Player fEatFood;
+    public MMF_Player fTeleport;
+    public MMF_Player fEatPortal;
+    [Header("")]
+    public MMF_Player fDeathHead;
+    public MMF_Player fDeathBody;
+    
 
     private Vector3 direction;
 
@@ -81,6 +91,7 @@ public class S_SnakeBehavior : MonoBehaviour
         if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
         {
             objecCollide.GetComponent<IEatable>().Eat();
+            fEatFood?.PlayFeedbacks();
             GrowSnake();
         }
     }  
