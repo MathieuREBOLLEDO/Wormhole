@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum FoodType
 {
-    Common,
-    Rare,
-    Legendary,
+    Common = 0,
+    Rare = 1,
+    Legendary = 2,
 }

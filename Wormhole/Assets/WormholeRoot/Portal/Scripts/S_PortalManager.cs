@@ -7,7 +7,6 @@ public class S_PortalManager : MonoBehaviour
     [SerializeField] private S_GetPortalManager instancePortalManager;
 
     protected List<GameObject> portalList = new List<GameObject>();
-    private int indexDebug = 0;
 
     private void Awake()
     {
@@ -27,9 +26,9 @@ public class S_PortalManager : MonoBehaviour
         int id = portalList.IndexOf(portalTofind);
         bool checkIsTrue = true;
 
-        if(id%2==0 || id ==0  )
+        if(id % 2 == 0 || id == 0  )
         {            
-            if (portalList.Count-1==id)
+            if (portalList.Count-1 == id)
                 checkIsTrue = false;
             else checkIsTrue = true;
         }
@@ -44,7 +43,6 @@ public class S_PortalManager : MonoBehaviour
     public void DestroyMultiplePortals(GameObject portal)
     {
         DestroyPortal(GetPortal(portal));
-
         DestroyPortal(portal);
     }
 

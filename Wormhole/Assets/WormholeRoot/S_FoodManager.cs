@@ -10,29 +10,41 @@ public class S_FoodManager : MonoBehaviour
 
     [SerializeField] private GameObject myFood;
 
-    // Start is called before the first frame update
+    [Range(-1.5f, 0f)]
+    [SerializeField] float distanceFromBorder;
+
     void Start()
     {
-        screenBounds = cameraBoundaries.GetCameraBorder(-1.5f);
+        screenBounds = cameraBoundaries.GetCameraBorder(distanceFromBorder);
+        StartCoroutine(CallSpawnRandomly());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnDrawGizmos()
     {
         cameraBoundaries.DisplayGizmos(screenBounds, Color.black);
     }
 
+    private IEnumerator CallSpawnRandomly()
+    {
+        while (true)
+        {
+            // Call your method here
+            SpawFood();
+            Debug.Log("Call");
+            float randomTime = Random.Range(1f, 5f); // Change the range as needed
+            yield return new WaitForSeconds(randomTime); // Wait for a random time
+        }
+    }
+
     private void SpawFood()
     {
-        Vector3 posToAppear = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y), 0); ;
+        Debug.Log("Call Spawn");
+        Vector3 posToAppear = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y), 0);
         
-        GameObject food = Instantiate(myFood, posToAppear,Quaternion.AngleAxis(Random.Range(0,360f),Vector3.up));
-        food.GetComponent<S_FoodBehavior>().SetFood();
+        GameObject food = Instantiate(myFood, posToAppear,Quaternion.AngleAxis(Random.Range(0,360f),Vector3.up),transform);
+
+        food.GetComponent<S_FoodBehavior>().SetFood((FoodType)Random.Range(0,3));
 
     }
 

@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class S_FoodBehavior :MonoBehaviour, IEatable
 {
-    private FoodType type;
+    [SerializeField] private S_FoodColorPalette colorPalette;
+    [SerializeField] private S_FoodPoints listeOfPoints;
+
+    [Header("Datas")]
+    [SerializeField] private FoodType type;
+    public int thisPoint;
 
     [SerializeField]
     [Range(0f, 360f)]
     private float rotationSpeed;
-
-    
-
     private Vector3 rotationAxis;
+
+    [SerializeField] private MeshRenderer thisRenderer;    
+
+
 
     public void Eat()
     {
@@ -32,40 +38,16 @@ public class S_FoodBehavior :MonoBehaviour, IEatable
     public void SetFood( FoodType newType)
     {
         type = newType;
+        SetColor();
+        SetPoints();
     }
     private void SetColor()
     {
-        switch (type)
-        {
-            case FoodType.Common:
-                
-                break;
-
-            case FoodType.Rare:
-
-                break;
-
-            case FoodType.Legendary: 
-                
-                break;
-        }
+        thisRenderer.material.color = colorPalette.colors[(int)type];
     }
 
     private void SetPoints()
     {
-        switch (type)
-        {
-            case FoodType.Common:
-
-                break;
-
-            case FoodType.Rare:
-
-                break;
-
-            case FoodType.Legendary:
-
-                break;
-        }
+        thisPoint = listeOfPoints.points[(int)type];
     }
 }

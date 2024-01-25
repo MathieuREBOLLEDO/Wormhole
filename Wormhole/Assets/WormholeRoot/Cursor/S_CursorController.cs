@@ -15,7 +15,7 @@ public class S_CursorController : MonoBehaviour
     private Vector2 screenBounds;
     [SerializeField] private S_CameraBoundaries cameraBoundaries;
 
-    [SerializeField] private SpriteRenderer [] renderer;
+    [SerializeField] private SpriteRenderer [] thisRenderer;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class S_CursorController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0) )
         {
-            GameObject tmpPortal = GameObject.Instantiate(portal, transform.position, transform.rotation);
+            GameObject tmpPortal = GameObject.Instantiate(portal, transform.position, transform.rotation,portalManager.myPortalManager.transform);
             portalManager.myPortalManager.AddPortalToList(tmpPortal);
             //ChangeRenderer(false);
         }
@@ -54,7 +54,7 @@ public class S_CursorController : MonoBehaviour
 
     void ChangeRenderer(bool isActivate)
     {
-        foreach (var rend in renderer)
+        foreach (var rend in thisRenderer)
         {
             rend.color = new Color(
                 rend.color.r,
