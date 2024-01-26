@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class S_SnakeBodyAnimation : MonoBehaviour
 {
     [SerializeField] GameObject bodyRenderer;
     [SerializeField] private S_SnakeAnimationDatas datasAnim;
+
+    [SerializeField] public MMF_Player deathFeedback;
 
     private float startTime;
 

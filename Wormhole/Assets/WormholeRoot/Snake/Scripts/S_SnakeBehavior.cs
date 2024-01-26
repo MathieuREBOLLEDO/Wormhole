@@ -117,6 +117,8 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             GrowSnake();
         }*/
+
+        if (Input.GetKeyDown(KeyCode.Space)) { CallDeath(); }
     }
 
     void TeleportSnake(GameObject portal)
@@ -179,8 +181,22 @@ public class S_SnakeBehavior : MonoBehaviour
 
     public void CallDeath()
     {
-        Debug.Log("$<color=red>DEATH!!!</color>");
+        Debug.Log("<color=red>DEATH!!!</color>");
         isDead = true;
+        bodyParts[0].GetComponent<S_SnakeHeadBehavior>().deathFeedback?.PlayFeedbacks();
+
+        StartCoroutine(DestroySnake());
+    }
+
+
+    IEnumerator DestroySnake()
+    {
+        for (int i = bodyParts.Count - 1 ; i >= 0; i--)
+        {            
+            bodyParts[i].GetComponent<S_SnakeBodyAnimation>().deathFeedback?.PlayFeedbacks();
+            yield return new WaitForSeconds(0.15f);
+        }   
+
     }
 
     IEnumerator InitSnake(float delayTime)
