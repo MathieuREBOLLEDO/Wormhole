@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SO_AnimationData", menuName = "Snake/Animation Data", order = 2)]
+[CreateAssetMenu(fileName = "SO_AnimationData", menuName = "Snake/Animation Datas", order = 2)]
 
-public class S_AnimationDatas : ScriptableObject
+public class S_SnakeAnimationDatas : ScriptableObject
 {
     public float rotationValues;
 

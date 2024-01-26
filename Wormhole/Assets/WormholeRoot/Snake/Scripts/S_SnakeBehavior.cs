@@ -6,39 +6,39 @@ using UnityEngine;
 //using Color = Unity.Color;
 
 public class S_SnakeBehavior : MonoBehaviour
-{ 
+{
+    [SerializeField] Transform bodysParent;
+    [Header("Datas")]
     public S_SnakeData snakeData;
     public S_SnakePrefab snakePrefab;
     public S_SnakeColorPalette colorPalette;
+    public S_SnakeFeedbacks snakeFeedbacks;
 
-    [Header("")]
-    [SerializeField] public S_GetPortalManager portalManager;
-
-    [Header("Feedbacks")]
-    public MMF_Player fEatFood;
-    public MMF_Player fTeleport;
-    public MMF_Player fEatPortal;
-    [Header("")]
-    public MMF_Player fDeathHead;
-    public MMF_Player fDeathBody;
-    
+    [Header("PortalManager")]
+    [SerializeField] public S_GetPortalManager portalManager;   
 
     private Vector3 direction;
 
+    #region List
     private List <GameObject> bodyParts = new List <GameObject>();
-    private List <S_BodyAnimation> bodyAnimations = new List <S_BodyAnimation>();
+    private List <S_SnakeBodyAnimation> bodyAnimations = new List <S_SnakeBodyAnimation>();
 
     private List <Vector3> positionHistory = new List <Vector3>();
     
     private List <float> listOfAlpha = new List<float>();
+    #endregion
+
+    private MMF_Player fEatFood;
+    private MMF_Player fTeleport;
+    private MMF_Player fEatPortal;
 
     bool isDead = false;
     
 
     void Awake()
     {
-        //GameObject head = GameObject.Instantiate(snakePrefab.snakeHead,this.transform);
-        S_BodyAnimation head = GetComponentInChildren<S_BodyAnimation>();
+        //GameObject head = GameObject.Instantiate(snakePrefab.snakeHead,bodysParent);
+        S_SnakeBodyAnimation head = GetComponentInChildren<S_SnakeBodyAnimation>();
         bodyParts.Add(head.gameObject);
         bodyAnimations.Add(head);
         listOfAlpha.Add(0f);        
@@ -48,6 +48,12 @@ public class S_SnakeBehavior : MonoBehaviour
     {
         direction = transform.right;
         StartCoroutine(InitSnake(0.5f));
+
+        GameObject parentFeeback = GameObject.Instantiate(new GameObject("Feebacks"), transform);
+        fEatFood = GameObject.Instantiate(snakeFeedbacks.eatFB, parentFeeback.transform);
+        fTeleport = GameObject.Instantiate(snakeFeedbacks.teleportFB, parentFeeback.transform);
+        fEatFood = GameObject.Instantiate(snakeFeedbacks.eatPortalFB, parentFeeback.transform);
+
     }
 
     void Update()
@@ -120,9 +126,9 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private void GrowSnake()
     {
-        GameObject body = GameObject.Instantiate(snakePrefab.snakeBody, this.transform);
+        GameObject body = GameObject.Instantiate(snakePrefab.snakeBody, bodysParent);
         bodyParts.Add(body);
-        bodyAnimations.Add(body.GetComponent<S_BodyAnimation>());
+        bodyAnimations.Add(body.GetComponent<S_SnakeBodyAnimation>());
         listOfAlpha.Add(0f);
 
         int index = 0;
@@ -160,12 +166,12 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private void MoveBodyBehavior()
     {
-        if (bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>() != null)
+        if (bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>() != null)
         {
-            Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_BodyBehavior>());
+            Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>());
         }
 
-        bodyParts[bodyParts.Count - 1].AddComponent<S_BodyBehavior>();
+        bodyParts[bodyParts.Count - 1].AddComponent<S_SnakeBodyBehavior>();
     }
 
     public void CallDeath()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_BodyBehavior : MonoBehaviour
+public class S_SnakeBodyBehavior : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

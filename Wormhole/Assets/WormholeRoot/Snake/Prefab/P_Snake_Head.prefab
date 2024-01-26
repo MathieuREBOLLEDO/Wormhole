@@ -343,8 +343,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3256134008809785631}
-  - component: {fileID: 7058026147306412182}
-  - component: {fileID: 4852619760339639172}
+  - component: {fileID: 4416994620833739841}
+  - component: {fileID: 621304585794277076}
   - component: {fileID: 3022109153879586972}
   - component: {fileID: 6945668631907702983}
   m_Layer: 7
@@ -370,7 +370,7 @@ Transform:
   - {fileID: 7815544628760037736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7058026147306412182
+--- !u!114 &4416994620833739841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d19597f003d0f4888ab9a9604e64ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4852619760339639172
+--- !u!114 &621304585794277076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 2797303401600699910}
   - component: {fileID: 327273363921122042}
   m_Layer: 0
-  m_Name: Cone
+  m_Name: HeadRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

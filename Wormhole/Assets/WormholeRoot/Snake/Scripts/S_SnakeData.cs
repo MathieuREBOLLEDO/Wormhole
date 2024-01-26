@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "SO_Snake Datas", menuName = "Snake/Snake Data", order = 0)]
+[CreateAssetMenu(fileName = "SO_Snake Datas", menuName = "Snake/Datas", order = 0)]
 public class S_SnakeData : ScriptableObject
 {   
     [Header("Datas")]

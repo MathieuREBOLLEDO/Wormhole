@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_BodyAnimation : MonoBehaviour
+public class S_SnakeBodyAnimation : MonoBehaviour
 {
     [SerializeField] GameObject bodyRenderer;
-    [SerializeField] private S_AnimationDatas datasAnim;
+    [SerializeField] private S_SnakeAnimationDatas datasAnim;
 
     private float startTime;
 
