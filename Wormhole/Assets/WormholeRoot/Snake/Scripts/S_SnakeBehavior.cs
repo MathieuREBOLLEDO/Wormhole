@@ -12,7 +12,13 @@ public class S_SnakeBehavior : MonoBehaviour
     public S_SnakeData snakeData;
     public S_SnakePrefab snakePrefab;
     public S_SnakeColorPalette colorPalette;
-    public S_SnakeFeedbacks snakeFeedbacks;
+
+    [Header("Feedbacks")]
+    [SerializeField] MMF_Player fEatFood;
+    [SerializeField] MMF_Player fTeleport;
+    [SerializeField] MMF_Player fEatPortal;
+
+    //public S_SnakeFeedbacks snakeFeedbacks;
 
     [Header("PortalManager")]
     [SerializeField] public S_GetPortalManager portalManager;   
@@ -28,10 +34,7 @@ public class S_SnakeBehavior : MonoBehaviour
     private List <float> listOfAlpha = new List<float>();
     #endregion
 
-    private MMF_Player fEatFood;
-    private MMF_Player fTeleport;
-    private MMF_Player fEatPortal;
-
+    
     bool isDead = false;
     
 
@@ -49,10 +52,10 @@ public class S_SnakeBehavior : MonoBehaviour
         direction = transform.right;
         StartCoroutine(InitSnake(0.5f));
 
-        GameObject parentFeeback = GameObject.Instantiate(new GameObject("Feebacks"), transform);
-        fEatFood = GameObject.Instantiate(snakeFeedbacks.eatFB, parentFeeback.transform);
-        fTeleport = GameObject.Instantiate(snakeFeedbacks.teleportFB, parentFeeback.transform);
-        fEatFood = GameObject.Instantiate(snakeFeedbacks.eatPortalFB, parentFeeback.transform);
+        //GameObject parentFeeback = GameObject.Instantiate(new GameObject("Feebacks"), transform);
+        //fEatFood = GameObject.Instantiate(snakeFeedbacks.eatFB, parentFeeback.transform);
+        //fTeleport = GameObject.Instantiate(snakeFeedbacks.teleportFB, parentFeeback.transform);
+        //fEatFood = GameObject.Instantiate(snakeFeedbacks.eatPortalFB, parentFeeback.transform);
 
     }
 
