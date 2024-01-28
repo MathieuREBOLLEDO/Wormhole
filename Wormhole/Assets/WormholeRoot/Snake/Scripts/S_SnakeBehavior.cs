@@ -184,7 +184,6 @@ public class S_SnakeBehavior : MonoBehaviour
         Debug.Log("<color=red>DEATH!!!</color>");
         isDead = true;
         bodyParts[0].GetComponent<S_SnakeHeadBehavior>().deathFeedback?.PlayFeedbacks();
-
         StartCoroutine(DestroySnake());
     }
 
@@ -195,8 +194,7 @@ public class S_SnakeBehavior : MonoBehaviour
         {            
             bodyParts[i].GetComponent<S_SnakeBodyAnimation>().deathFeedback?.PlayFeedbacks();
             yield return new WaitForSeconds(0.15f);
-        }   
-
+        } 
     }
 
     IEnumerator InitSnake(float delayTime)
