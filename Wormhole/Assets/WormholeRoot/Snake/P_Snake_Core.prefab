@@ -64,7 +64,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5750844284386001146}
@@ -87,10 +87,10 @@ MonoBehaviour:
   snakeData: {fileID: 11400000, guid: 2e812cc1e554354408043e18df4c888c, type: 2}
   snakePrefab: {fileID: 11400000, guid: de4d98c265a2a6f4ea4724fe60775740, type: 2}
   colorPalette: {fileID: 11400000, guid: e51c4d8a76124aa4c87bdb10e2579cc2, type: 2}
-  portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
   fEatFood: {fileID: 5725429238896153623}
   fTeleport: {fileID: 7041358725146139287}
   fEatPortal: {fileID: 2128817273314412924}
+  portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
 --- !u!114 &3079837284428366374
 MonoBehaviour:
   m_ObjectHideFlags: 0

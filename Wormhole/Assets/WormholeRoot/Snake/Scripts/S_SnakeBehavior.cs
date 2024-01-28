@@ -25,6 +25,8 @@ public class S_SnakeBehavior : MonoBehaviour
 
     private Vector3 direction;
 
+    private S_CheckBounds checkBounds;
+
     #region List
     private List <GameObject> bodyParts = new List <GameObject>();
     private List <S_SnakeBodyAnimation> bodyAnimations = new List <S_SnakeBodyAnimation>();
@@ -40,27 +42,28 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 30;
         //GameObject head = GameObject.Instantiate(snakePrefab.snakeHead,bodysParent);
         S_SnakeBodyAnimation head = GetComponentInChildren<S_SnakeBodyAnimation>();
         bodyParts.Add(head.gameObject);
         bodyAnimations.Add(head);
-        listOfAlpha.Add(0f);        
+        listOfAlpha.Add(0f);      
+        
+        checkBounds = GetComponent<S_CheckBounds>();
     }
 
     void Start()
     {
         direction = transform.right;
-        StartCoroutine(InitSnake(0.5f));
-
-        //GameObject parentFeeback = GameObject.Instantiate(new GameObject("Feebacks"), transform);
-        //fEatFood = GameObject.Instantiate(snakeFeedbacks.eatFB, parentFeeback.transform);
-        //fTeleport = GameObject.Instantiate(snakeFeedbacks.teleportFB, parentFeeback.transform);
-        //fEatFood = GameObject.Instantiate(snakeFeedbacks.eatPortalFB, parentFeeback.transform);
+        StartCoroutine(InitSnake(0.15f));
+        //InitSnake(0f);
 
     }
 
     void Update()
     {
+        checkBounds.CheckForBounds();
+
         if (!isDead)
         {
             AddSegment();
@@ -76,8 +79,7 @@ public class S_SnakeBehavior : MonoBehaviour
                 body.transform.position = point;
                 bodyAnimations[index].AnimateBody();
                 index++;
-                
-            }            
+            }
         }
     }
 
