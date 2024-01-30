@@ -23,4 +23,9 @@ public class S_SnakeBodyAnimation : MonoBehaviour
 
         bodyRenderer.transform.localPosition = new Vector3(bodyRenderer.transform.localPosition.x, yPos, bodyRenderer.transform.localPosition.z);
     }
+
+    public void SetBodyColor(Color newColor)
+    {
+        bodyRenderer.GetComponent<MeshRenderer>().material.color = newColor;
+    }
 }

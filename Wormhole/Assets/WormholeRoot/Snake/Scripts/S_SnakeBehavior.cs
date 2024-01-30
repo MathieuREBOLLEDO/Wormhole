@@ -36,7 +36,9 @@ public class S_SnakeBehavior : MonoBehaviour
     private List <float> listOfAlpha = new List<float>();
     #endregion
 
-    
+    [SerializeField] bool isInvulnerable;
+
+    bool isInitialized = false;
     bool isDead = false;
     
 
@@ -75,7 +77,7 @@ public class S_SnakeBehavior : MonoBehaviour
             int index = 0;
             foreach (var body in bodyParts)
             {
-                Vector3 point = positionHistory[Mathf.Min(index * snakeData.snakeBodyGap, positionHistory.Count - 1)];
+                Vector3 point = positionHistory[Mathf.Min(index * (snakeData.snakeBodyGap/10), positionHistory.Count - 1)];
                 body.transform.position = point;
                 bodyAnimations[index].AnimateBody();
                 index++;
@@ -142,10 +144,12 @@ public class S_SnakeBehavior : MonoBehaviour
 
         foreach(var part in bodyParts)
         {            
-            if (index!=0)
-            {
-                part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index);               
-            }                
+           // if (index!=0)
+           // {
+           //     part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index);               
+           // }           
+           // else
+            part.GetComponent<S_SnakeBodyAnimation>().SetBodyColor(ColorUpdater(index));
             index++;
         }
 
@@ -183,10 +187,14 @@ public class S_SnakeBehavior : MonoBehaviour
 
     public void CallDeath()
     {
-        Debug.Log("<color=red>DEATH!!!</color>");
-        isDead = true;
-        bodyParts[0].GetComponent<S_SnakeHeadBehavior>().deathFeedback?.PlayFeedbacks();
-        StartCoroutine(DestroySnake());
+        if( isInitialized && !isInvulnerable)
+        {
+            Debug.Log("<color=red>DEATH!!!</color>");
+            isDead = true;
+            bodyParts[0].GetComponent<S_SnakeHeadBehavior>().deathFeedback?.PlayFeedbacks();
+            StartCoroutine(DestroySnake());
+        }
+        
     }
 
 
@@ -205,5 +213,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
         for (int i = 0; i < snakeData.initSize; i++)
             GrowSnake();
+
+        isInitialized = true;
     }
 }

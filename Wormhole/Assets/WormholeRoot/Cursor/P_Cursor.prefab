@@ -218,6 +218,4 @@ MonoBehaviour:
   portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
   scrollSpeed: 50
   cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
-  renderer:
-  - {fileID: 8390980986095362049}
-  - {fileID: 6544026742869572178}
+  thisRenderer: []

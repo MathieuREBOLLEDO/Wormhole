@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e13e76ac0eac0c43962631c9bd32d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyRenderer: {fileID: 8947378127279828351}
+  bodyRenderer: {fileID: 7234131212764500572}
   datasAnim: {fileID: 11400000, guid: 47bcae8f575076349989c40431a16f44, type: 2}
   deathFeedback: {fileID: 7688428368856772467}
 --- !u!50 &3022109153879586972
@@ -642,18 +642,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5955556555399627148}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8947378127279828351}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8947378127279828351 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3354366032935726323, guid: 0681e2cbaf546fb449402db45b3123e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5955556555399627148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8118832592601795202
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class S_SnakeData : ScriptableObject
     public int initSize = 2;
     [Range(1f , 20f)]
     public float snakeSpeed = 0.2f;
-    [Range(1 , 10)]
+    [Range(1 , 50)]
     public int snakeBodyGap = 10;
 
 }

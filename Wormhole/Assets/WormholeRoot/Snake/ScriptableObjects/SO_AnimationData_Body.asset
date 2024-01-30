@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SO_AnimationData_Body
   m_EditorClassIdentifier: 
   rotationValues: 0
-  amplitude: 0.08
+  amplitude: 3
   frequency: 10
