@@ -19,7 +19,7 @@ public class S_SnakeBodyAnimation : MonoBehaviour
 
     public void AnimateBody()
     {
-        float yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude;
+        float yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude*Time.deltaTime;
 
         bodyRenderer.transform.localPosition = new Vector3(bodyRenderer.transform.localPosition.x, yPos, bodyRenderer.transform.localPosition.z);
     }
