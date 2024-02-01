@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4937605864433075773
 Transform:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3956888053946708567
 Transform:
   m_ObjectHideFlags: 0
@@ -178,8 +178,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2269571573547734945}
   - component: {fileID: 2108629466171547612}
+  - component: {fileID: 6040935130411177082}
   m_Layer: 0
-  m_Name: P_Cursor
+  m_Name: P_InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,4 +219,50 @@ MonoBehaviour:
   portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
   scrollSpeed: 50
   cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
-  thisRenderer: []
+--- !u!114 &6040935130411177082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4538864500295107707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 80b1a7a8cd0e543438aef6197cab4d24,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108629466171547612}
+        m_TargetAssemblyTypeName: S_CursorController, Assembly-CSharp
+        m_MethodName: PlacePortalTest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f008427-32b2-4b26-b977-e16a46b02648
+    m_ActionName: Touch/Place Portal[/Simulated Touchscreen/position]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Computer
+  m_DefaultActionMap: Touch
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

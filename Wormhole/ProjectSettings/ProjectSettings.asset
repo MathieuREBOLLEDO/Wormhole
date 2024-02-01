@@ -155,6 +155,8 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.Wormhole
+    Standalone: com.DefaultCompany.Wormhole
+    iPhone: com.DefaultCompany.Wormhole
   buildNumber:
     Standalone: 0
     VisionOS: 0

@@ -111,18 +111,18 @@ public class S_SnakeBehavior : MonoBehaviour
 
     void AddSegment()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GrowSnake();
-        }
-
-        /*
-        if( Input.GetMouseButtonDown(0))
-        {
-            GrowSnake();
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.Space)) { CallDeath(); }
+      //  if (Input.GetKeyDown(KeyCode.A))
+     //   {
+         //   GrowSnake();
+       // }
+      //
+      //  /*
+      //  if( Input.GetMouseButtonDown(0))
+      //  {
+      //      GrowSnake();
+      //  }*/
+      //
+      //  if (Input.GetKeyDown(KeyCode.Space)) { CallDeath(); }
     }
 
     void TeleportSnake(GameObject portal)
