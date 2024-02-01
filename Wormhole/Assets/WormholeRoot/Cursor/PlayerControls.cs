@@ -24,7 +24,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Touch"",
+            ""name"": ""TouchInputs"",
             ""id"": ""17cf8c15-36eb-49e7-b919-cc2b147d43ef"",
             ""actions"": [
                 {
@@ -54,9 +54,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Touch
-        m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
-        m_Touch_PlacePortal = m_Touch.FindAction("PlacePortal", throwIfNotFound: true);
+        // TouchInputs
+        m_TouchInputs = asset.FindActionMap("TouchInputs", throwIfNotFound: true);
+        m_TouchInputs_PlacePortal = m_TouchInputs.FindAction("PlacePortal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -115,52 +115,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Touch
-    private readonly InputActionMap m_Touch;
-    private List<ITouchActions> m_TouchActionsCallbackInterfaces = new List<ITouchActions>();
-    private readonly InputAction m_Touch_PlacePortal;
-    public struct TouchActions
+    // TouchInputs
+    private readonly InputActionMap m_TouchInputs;
+    private List<ITouchInputsActions> m_TouchInputsActionsCallbackInterfaces = new List<ITouchInputsActions>();
+    private readonly InputAction m_TouchInputs_PlacePortal;
+    public struct TouchInputsActions
     {
         private @PlayerControls m_Wrapper;
-        public TouchActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PlacePortal => m_Wrapper.m_Touch_PlacePortal;
-        public InputActionMap Get() { return m_Wrapper.m_Touch; }
+        public TouchInputsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlacePortal => m_Wrapper.m_TouchInputs_PlacePortal;
+        public InputActionMap Get() { return m_Wrapper.m_TouchInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TouchActions set) { return set.Get(); }
-        public void AddCallbacks(ITouchActions instance)
+        public static implicit operator InputActionMap(TouchInputsActions set) { return set.Get(); }
+        public void AddCallbacks(ITouchInputsActions instance)
         {
-            if (instance == null || m_Wrapper.m_TouchActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_TouchActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Add(instance);
             @PlacePortal.started += instance.OnPlacePortal;
             @PlacePortal.performed += instance.OnPlacePortal;
             @PlacePortal.canceled += instance.OnPlacePortal;
         }
 
-        private void UnregisterCallbacks(ITouchActions instance)
+        private void UnregisterCallbacks(ITouchInputsActions instance)
         {
             @PlacePortal.started -= instance.OnPlacePortal;
             @PlacePortal.performed -= instance.OnPlacePortal;
             @PlacePortal.canceled -= instance.OnPlacePortal;
         }
 
-        public void RemoveCallbacks(ITouchActions instance)
+        public void RemoveCallbacks(ITouchInputsActions instance)
         {
-            if (m_Wrapper.m_TouchActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ITouchActions instance)
+        public void SetCallbacks(ITouchInputsActions instance)
         {
-            foreach (var item in m_Wrapper.m_TouchActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_TouchInputsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_TouchActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public TouchActions @Touch => new TouchActions(this);
-    public interface ITouchActions
+    public TouchInputsActions @TouchInputs => new TouchInputsActions(this);
+    public interface ITouchInputsActions
     {
         void OnPlacePortal(InputAction.CallbackContext context);
     }

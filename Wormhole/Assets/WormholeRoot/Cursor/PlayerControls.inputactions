@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Touch",
+            "name": "TouchInputs",
             "id": "17cf8c15-36eb-49e7-b919-cc2b147d43ef",
             "actions": [
                 {
