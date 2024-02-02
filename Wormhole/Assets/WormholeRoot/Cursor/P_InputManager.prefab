@@ -215,10 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa03dd3a63ac5e45a02e903431c1d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimunDistance: 0.2
+  maximunTime: 1
+  cameraBorderOffset: 0.15
+  cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
   portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
-  scrollSpeed: 50
-  cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
 --- !u!114 &6040935130411177082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +251,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2108629466171547612}
         m_TargetAssemblyTypeName: S_CursorController, Assembly-CSharp
-        m_MethodName: PlacePortalTest
+        m_MethodName: StartTouchPrimary
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -259,10 +261,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 1f008427-32b2-4b26-b977-e16a46b02648
-    m_ActionName: Touch/Place Portal[/Simulated Touchscreen/position]
+    m_ActionId: 88c3fd26-68d6-48f7-970c-9f359d38487c
+    m_ActionName: Test/PrimaryContact[/Simulated Touchscreen/primaryTouch/press]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108629466171547612}
+        m_TargetAssemblyTypeName: S_CursorController, Assembly-CSharp
+        m_MethodName: EndTouchPrimary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 174f03b2-cccf-47b3-a0e4-d16f8ea0b592
+    m_ActionName: Test/PrimaryPosition[/Simulated Touchscreen/primaryTouch/position]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Computer
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Touch
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -2,28 +2,48 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "TouchInputs",
-            "id": "17cf8c15-36eb-49e7-b919-cc2b147d43ef",
+            "name": "Touch",
+            "id": "05f58407-1b1c-48ab-b4f2-e72acd140d26",
             "actions": [
                 {
-                    "name": "PlacePortal",
-                    "type": "Value",
-                    "id": "1f008427-32b2-4b26-b977-e16a46b02648",
+                    "name": "PrimaryContact",
+                    "type": "PassThrough",
+                    "id": "88c3fd26-68d6-48f7-970c-9f359d38487c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PrimaryPosition",
+                    "type": "PassThrough",
+                    "id": "174f03b2-cccf-47b3-a0e4-d16f8ea0b592",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "3438eda3-94e2-4a31-9d36-7bccc3b80900",
-                    "path": "<Touchscreen>/position",
+                    "id": "c0f8b8bd-c79d-412b-b7a9-9ab1054680f9",
+                    "path": "<Touchscreen>/primaryTouch/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlacePortal",
+                    "action": "PrimaryContact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cbf77eb-c8ed-441d-9dcd-e123d29f9175",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

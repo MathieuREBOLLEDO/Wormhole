@@ -1257,47 +1257,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Smarth-Phone
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
-        type: 3}
-      propertyPath: m_NotificationBehavior
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_NeverAutoSwitchControlSchemes
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 669558245}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlacePortalTest
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTouchPrimary
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: EndTouchPrimary
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: S_CursorController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6040935130411177082, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

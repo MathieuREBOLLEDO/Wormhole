@@ -24,28 +24,48 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""TouchInputs"",
-            ""id"": ""17cf8c15-36eb-49e7-b919-cc2b147d43ef"",
+            ""name"": ""Touch"",
+            ""id"": ""05f58407-1b1c-48ab-b4f2-e72acd140d26"",
             ""actions"": [
                 {
-                    ""name"": ""PlacePortal"",
-                    ""type"": ""Value"",
-                    ""id"": ""1f008427-32b2-4b26-b977-e16a46b02648"",
+                    ""name"": ""PrimaryContact"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""88c3fd26-68d6-48f7-970c-9f359d38487c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrimaryPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""174f03b2-cccf-47b3-a0e4-d16f8ea0b592"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
-                    ""initialStateCheck"": true
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""3438eda3-94e2-4a31-9d36-7bccc3b80900"",
-                    ""path"": ""<Touchscreen>/position"",
+                    ""id"": ""c0f8b8bd-c79d-412b-b7a9-9ab1054680f9"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PlacePortal"",
+                    ""action"": ""PrimaryContact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cbf77eb-c8ed-441d-9dcd-e123d29f9175"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -54,9 +74,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // TouchInputs
-        m_TouchInputs = asset.FindActionMap("TouchInputs", throwIfNotFound: true);
-        m_TouchInputs_PlacePortal = m_TouchInputs.FindAction("PlacePortal", throwIfNotFound: true);
+        // Touch
+        m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
+        m_Touch_PrimaryContact = m_Touch.FindAction("PrimaryContact", throwIfNotFound: true);
+        m_Touch_PrimaryPosition = m_Touch.FindAction("PrimaryPosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -115,53 +136,62 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // TouchInputs
-    private readonly InputActionMap m_TouchInputs;
-    private List<ITouchInputsActions> m_TouchInputsActionsCallbackInterfaces = new List<ITouchInputsActions>();
-    private readonly InputAction m_TouchInputs_PlacePortal;
-    public struct TouchInputsActions
+    // Touch
+    private readonly InputActionMap m_Touch;
+    private List<ITouchActions> m_TouchActionsCallbackInterfaces = new List<ITouchActions>();
+    private readonly InputAction m_Touch_PrimaryContact;
+    private readonly InputAction m_Touch_PrimaryPosition;
+    public struct TouchActions
     {
         private @PlayerControls m_Wrapper;
-        public TouchInputsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PlacePortal => m_Wrapper.m_TouchInputs_PlacePortal;
-        public InputActionMap Get() { return m_Wrapper.m_TouchInputs; }
+        public TouchActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PrimaryContact => m_Wrapper.m_Touch_PrimaryContact;
+        public InputAction @PrimaryPosition => m_Wrapper.m_Touch_PrimaryPosition;
+        public InputActionMap Get() { return m_Wrapper.m_Touch; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TouchInputsActions set) { return set.Get(); }
-        public void AddCallbacks(ITouchInputsActions instance)
+        public static implicit operator InputActionMap(TouchActions set) { return set.Get(); }
+        public void AddCallbacks(ITouchActions instance)
         {
-            if (instance == null || m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Add(instance);
-            @PlacePortal.started += instance.OnPlacePortal;
-            @PlacePortal.performed += instance.OnPlacePortal;
-            @PlacePortal.canceled += instance.OnPlacePortal;
+            if (instance == null || m_Wrapper.m_TouchActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TouchActionsCallbackInterfaces.Add(instance);
+            @PrimaryContact.started += instance.OnPrimaryContact;
+            @PrimaryContact.performed += instance.OnPrimaryContact;
+            @PrimaryContact.canceled += instance.OnPrimaryContact;
+            @PrimaryPosition.started += instance.OnPrimaryPosition;
+            @PrimaryPosition.performed += instance.OnPrimaryPosition;
+            @PrimaryPosition.canceled += instance.OnPrimaryPosition;
         }
 
-        private void UnregisterCallbacks(ITouchInputsActions instance)
+        private void UnregisterCallbacks(ITouchActions instance)
         {
-            @PlacePortal.started -= instance.OnPlacePortal;
-            @PlacePortal.performed -= instance.OnPlacePortal;
-            @PlacePortal.canceled -= instance.OnPlacePortal;
+            @PrimaryContact.started -= instance.OnPrimaryContact;
+            @PrimaryContact.performed -= instance.OnPrimaryContact;
+            @PrimaryContact.canceled -= instance.OnPrimaryContact;
+            @PrimaryPosition.started -= instance.OnPrimaryPosition;
+            @PrimaryPosition.performed -= instance.OnPrimaryPosition;
+            @PrimaryPosition.canceled -= instance.OnPrimaryPosition;
         }
 
-        public void RemoveCallbacks(ITouchInputsActions instance)
+        public void RemoveCallbacks(ITouchActions instance)
         {
-            if (m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_TouchActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ITouchInputsActions instance)
+        public void SetCallbacks(ITouchActions instance)
         {
-            foreach (var item in m_Wrapper.m_TouchInputsActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_TouchActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_TouchInputsActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_TouchActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public TouchInputsActions @TouchInputs => new TouchInputsActions(this);
-    public interface ITouchInputsActions
+    public TouchActions @Touch => new TouchActions(this);
+    public interface ITouchActions
     {
-        void OnPlacePortal(InputAction.CallbackContext context);
+        void OnPrimaryContact(InputAction.CallbackContext context);
+        void OnPrimaryPosition(InputAction.CallbackContext context);
     }
 }
