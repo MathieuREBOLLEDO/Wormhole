@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //using UnityEngine.InputSystem.EnhancedTouch;
@@ -24,6 +25,7 @@ public class S_CursorController : MonoBehaviour
     private float cameraBorderOffset = 0.15f;
 
     private Camera mainCamera;
+
     private Vector2 screenBounds;
     [SerializeField]
     private S_CameraBoundaries cameraBoundaries;
@@ -32,79 +34,66 @@ public class S_CursorController : MonoBehaviour
     [SerializeField]
     private S_GetPortalManager portalManager;
     [SerializeField]
-    private GameObject portal;
+    private GameObject portalPrefab;
+    private GameObject portalPlaced;
 
+    [Header("Trail")]
+    [SerializeField]
+    private GameObject trail;
 
-    int indexDebug = 0;
-    // #region Events
-    // public delegate void StartTouch(Vector2 position, float time);
-    // public event StartTouch OnStartTouch;
-    //
-    // public delegate void EndTouch(Vector2 position, float time);
-    // public event StartTouch OnEndTouch;
-    // #endregion
+    [Header("Debug")]
+    [SerializeField]
+    private bool isDebug = false;
+    int indexDebug = 1;
 
+    #region Init
     private void Awake()
     {
         mainCamera = Camera.main;
+        Debug.Log(mainCamera.name);
         playerControls = new PlayerControls();
-        //playerInput = GetComponent<PlayerInput>();
-        //touchPressAction = playerInput.actions["PlacePortal"];
     }
 
     private void Start()
     {
         screenBounds = cameraBoundaries.GetCameraBorder(-cameraBorderOffset);
-
-        //playerControls.Touch.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
-        //playerControls.Touch.PrimaryContact.started += ctx => EndTouchPrimary(ctx);
     }
 
     private void OnEnable()
     {
-        //playerControls.Enable();
-
-        playerControls.Touch.PrimaryContact.performed += StartTouchPrimary;
-        playerControls.Touch.PrimaryContact.performed += EndTouchPrimary;
-        //touchPressAction.performed += PlacePortal;
+        playerControls.Enable();
+       // playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
+       // playerControls.Touch.PrimaryContact.started += EndTouchPrimary;
     }
     private void OnDisable()
     {
-        //playerControls.Disable();
-
-        playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
-        playerControls.Touch.PrimaryContact.started -= EndTouchPrimary;
-        //touchPressAction.performed -= PlacePortal;
+        playerControls.Disable();
+       // playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
+       // playerControls.Touch.PrimaryContact.started -= EndTouchPrimary;
     }
-
+    #endregion
 
     public void StartTouchPrimary(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
-            Vector3 position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+            Vector2 readValue = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
+            Debug.Log(readValue);
+            Vector3 position = ConvertScreenToWorld(readValue);
+            Debug.Log(position);
 
-            position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
-            position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
+            //position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
+            //position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
 
             InitPortal(position, transform.rotation);
 
-            Debug.Log("Place a Portal" + indexDebug);
-            indexDebug++;
-
             SwipeStar(position, (float)ctx.startTime);
-
-        }
-
-        if (ctx.performed)
-        {
-            Debug.Log("Call");
         }
     }
 
     public void EndTouchPrimary(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (ctx.canceled)
         {
             Vector3 position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
             SwipeEnd(position, (float)ctx.time);
@@ -115,12 +104,39 @@ public class S_CursorController : MonoBehaviour
     {
         startPosition = position;
         startTime = time;
+
+        trail.SetActive(true);
+        trail.transform.position = position;
+        StartCoroutine(Trail());
+
+        if (isDebug)
+        {
+            Debug.Log("<color=green> StartPosition : " + position + " || start time  : " + time + "</color>");
+        }
+    }
+
+    private IEnumerator Trail()
+    {
+         while (true)
+         {
+             trail.transform.position = ConvertScreenToWorld( playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+             yield return null;
+         }        
     }
 
     private void SwipeEnd(Vector2 position, float time)
     {
         endPosition = position;
         endTime = time;
+
+        trail.SetActive(false);
+        StopCoroutine(Trail());
+
+        if (isDebug)
+        {
+            Debug.Log("<color=red> EndPosition : " + position + " || end time  : " + time + "</color>");
+        }
+
         DetectSwipe();
     }
 
@@ -129,33 +145,33 @@ public class S_CursorController : MonoBehaviour
         if (Vector3.Distance(startPosition, endPosition) >= minimunDistance
             && (endTime - startTime) <= maximunTime)
         {
-            Debug.Log("Swipe Detected");
-            Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
+            if (isDebug)
+            {
+                Debug.Log("Swipe Detected");
+                Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
+            }
 
             Vector3 direction = endPosition - startPosition;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
         }
     }
-    //  private void PlacePortal(InputAction.CallbackContext context)
-    //  {
-    //      if (context.started)
-    //      {
-    //          Vector2 readInput = touchPressAction.ReadValue<Vector2>();
-    //
-    //          Vector3 touchPosition = ConvertScreenToWorld(readInput);
-    //
-    //          touchPosition.x = Mathf.Clamp(touchPosition.x, -screenBounds.x, screenBounds.x);
-    //          touchPosition.y = Mathf.Clamp(touchPosition.y, -screenBounds.y, screenBounds.y);
-    //
-    //          InitPortal(touchPosition, transform.rotation);
-    //      }      
-    //  }
 
     void InitPortal(Vector3 position, Quaternion rotation)
     {
-        GameObject tmpPortal = GameObject.Instantiate(portal, position, rotation, portalManager.myPortalManager.transform);
+
+        GameObject tmpPortal = GameObject.Instantiate(portalPrefab, position, rotation, portalManager.myPortalManager.transform);
         portalManager.myPortalManager.AddPortalToList(tmpPortal);
+
+        if (isDebug)
+        {
+            Debug.Log("<color=purple>Place a Portal n°" + indexDebug + "  || Id " + portalManager.myPortalManager.GetPortalId(tmpPortal) + "</Color>");
+            indexDebug++;
+        }
+
+        portalPlaced = tmpPortal;
     }
+
+
 
     #region Utils
 

@@ -201,6 +201,7 @@ Transform:
   m_Children:
   - {fileID: 3956888053946708567}
   - {fileID: 4937605864433075773}
+  - {fileID: 6486143218217878772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2108629466171547612
@@ -220,7 +221,10 @@ MonoBehaviour:
   cameraBorderOffset: 0.15
   cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
-  portal: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8, type: 3}
+  portalPrefab: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8,
+    type: 3}
+  trail: {fileID: 7485953729870501885}
+  isDebug: 0
 --- !u!114 &6040935130411177082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +252,10 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 174f03b2-cccf-47b3-a0e4-d16f8ea0b592
+    m_ActionName: Test/PrimaryPosition[/Simulated Touchscreen/primaryTouch/position]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2108629466171547612}
         m_TargetAssemblyTypeName: S_CursorController, Assembly-CSharp
@@ -261,10 +269,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 88c3fd26-68d6-48f7-970c-9f359d38487c
-    m_ActionName: Test/PrimaryContact[/Simulated Touchscreen/primaryTouch/press]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 2108629466171547612}
         m_TargetAssemblyTypeName: S_CursorController, Assembly-CSharp
         m_MethodName: EndTouchPrimary
@@ -277,10 +281,95 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 174f03b2-cccf-47b3-a0e4-d16f8ea0b592
-    m_ActionName: Test/PrimaryPosition[/Simulated Touchscreen/primaryTouch/position]
+    m_ActionId: c39fa1b9-0395-4bb0-beea-de7d8252686c
+    m_ActionName: Touch/PrimaryContact[/Simulated Touchscreen/primaryTouch/tap]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Touch
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &7157886583983138374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2269571573547734945}
+    m_Modifications:
+    - target: {fileID: 339626694017577403, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_Name
+      value: P_Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 339626694017577403, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6033723
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08454432
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.943581
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fd08670da925a2046883d7344b548604, type: 3}
+--- !u!4 &6486143218217878772 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4131633782182044338, guid: fd08670da925a2046883d7344b548604,
+    type: 3}
+  m_PrefabInstance: {fileID: 7157886583983138374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7485953729870501885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 339626694017577403, guid: fd08670da925a2046883d7344b548604,
+    type: 3}
+  m_PrefabInstance: {fileID: 7157886583983138374}
+  m_PrefabAsset: {fileID: 0}

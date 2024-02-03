@@ -30,11 +30,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""PrimaryContact"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""88c3fd26-68d6-48f7-970c-9f359d38487c"",
+                    ""id"": ""c39fa1b9-0395-4bb0-beea-de7d8252686c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""PrimaryPosition"",
@@ -42,14 +42,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""174f03b2-cccf-47b3-a0e4-d16f8ea0b592"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c0f8b8bd-c79d-412b-b7a9-9ab1054680f9"",
+                    ""id"": ""5534d546-1d66-4700-8a07-935f3c6b233e"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",

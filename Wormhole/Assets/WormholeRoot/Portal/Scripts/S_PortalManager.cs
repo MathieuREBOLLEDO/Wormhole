@@ -21,6 +21,11 @@ public class S_PortalManager : MonoBehaviour
         
     }
 
+    public int GetPortalId(GameObject portalTofind) 
+    {
+        return portalList.IndexOf(portalTofind);
+    }
+
     public bool CheckForLink(GameObject portalTofind) 
     {
         int id = portalList.IndexOf(portalTofind);
