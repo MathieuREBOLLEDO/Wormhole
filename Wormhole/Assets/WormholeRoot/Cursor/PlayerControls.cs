@@ -42,8 +42,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""174f03b2-cccf-47b3-a0e4-d16f8ea0b592"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
-                    ""initialStateCheck"": true
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [

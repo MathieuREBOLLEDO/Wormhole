@@ -62,14 +62,14 @@ public class S_CursorController : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
-       // playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
-       // playerControls.Touch.PrimaryContact.started += EndTouchPrimary;
+        // playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
+        // playerControls.Touch.PrimaryContact.started += EndTouchPrimary;
     }
     private void OnDisable()
     {
         playerControls.Disable();
-       // playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
-       // playerControls.Touch.PrimaryContact.started -= EndTouchPrimary;
+        // playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
+        // playerControls.Touch.PrimaryContact.started -= EndTouchPrimary;
     }
     #endregion
 
@@ -78,12 +78,13 @@ public class S_CursorController : MonoBehaviour
         if (ctx.started)
         {
             Vector2 readValue = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
-            Debug.Log(readValue);
             Vector3 position = ConvertScreenToWorld(readValue);
-            Debug.Log(position);
 
-            //position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
-            //position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
+            //Debug.Log(readValue);
+            //Debug.Log(position);
+
+            position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
+            position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
 
             InitPortal(position, transform.rotation);
 
@@ -105,9 +106,11 @@ public class S_CursorController : MonoBehaviour
         startPosition = position;
         startTime = time;
 
-        trail.SetActive(true);
-        trail.transform.position = position;
-        StartCoroutine(Trail());
+        //trail.SetActive(true);
+        //trail.transform.position = position;
+        //StartCoroutine(Trail());
+
+        StartCoroutine(lookAtDirection());
 
         if (isDebug)
         {
@@ -117,11 +120,33 @@ public class S_CursorController : MonoBehaviour
 
     private IEnumerator Trail()
     {
-         while (true)
-         {
-             trail.transform.position = ConvertScreenToWorld( playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
-             yield return null;
-         }        
+        while (true)
+        {
+            trail.transform.position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+            yield return null;
+        }
+    }
+
+    private IEnumerator lookAtDirection()
+    {
+        while (true)
+        {
+
+            Vector2 currentPos = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+
+            Debug.Log(currentPos);
+
+            Vector3 direction = currentPos - startPosition;
+            //Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            if(portalPlaced!=null) 
+                portalPlaced.transform.rotation = rotation;
+
+            yield return null;
+        }
     }
 
     private void SwipeEnd(Vector2 position, float time)
@@ -129,8 +154,10 @@ public class S_CursorController : MonoBehaviour
         endPosition = position;
         endTime = time;
 
-        trail.SetActive(false);
-        StopCoroutine(Trail());
+        //trail.SetActive(false);
+        //StopCoroutine(Trail());
+
+        StopCoroutine(lookAtDirection());
 
         if (isDebug)
         {

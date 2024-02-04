@@ -86,11 +86,12 @@ MonoBehaviour:
   bodysParent: {fileID: 5750844284386001146}
   snakeData: {fileID: 11400000, guid: 2e812cc1e554354408043e18df4c888c, type: 2}
   snakePrefab: {fileID: 11400000, guid: de4d98c265a2a6f4ea4724fe60775740, type: 2}
-  colorPalette: {fileID: 11400000, guid: e51c4d8a76124aa4c87bdb10e2579cc2, type: 2}
+  colorPalette: {fileID: 11400000, guid: 07e4e5c9113d8bb4b93dc9048ec7a12c, type: 2}
   fEatFood: {fileID: 5725429238896153623}
   fTeleport: {fileID: 7041358725146139287}
   fEatPortal: {fileID: 2128817273314412924}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
+  isInvulnerable: 1
 --- !u!114 &3079837284428366374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: P_FB_Eat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956457508309366605, guid: a317883c01bb1c047a969cf40dae497a,
+        type: 3}
+      propertyPath: managedReferences[5818770053177802758].Active
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
