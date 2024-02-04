@@ -10,18 +10,33 @@ public class S_SnakeBodyAnimation : MonoBehaviour
 
     [SerializeField] public MMF_Player deathFeedback;
 
+    private float idSnake;
+
     private float startTime;
+
+    private bool isRandom = true;
 
     private void Start()
     {
-        startTime = Time.time + Random.Range(0f,1);    
+        if( isRandom)
+            startTime = Time.time + Random.Range(0f,1);    
     }
 
     public void AnimateBody()
     {
-        float yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude*Time.deltaTime;
+        float yPos;
+        if (isRandom)
+            yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude*Time.deltaTime;
+        else
+            yPos = Mathf.Sin((Time.time - (Time.time)+idSnake)*datasAnim.frequency)*datasAnim.amplitude*Time.deltaTime;
 
         bodyRenderer.transform.localPosition = new Vector3(bodyRenderer.transform.localPosition.x, yPos, bodyRenderer.transform.localPosition.z);
+    }
+
+    public void SetIdSnake(int id, int snakeSize)
+    {
+        if(snakeSize!=0)
+            idSnake = id/snakeSize;
     }
 
     public void SetBodyColor(Color newColor)

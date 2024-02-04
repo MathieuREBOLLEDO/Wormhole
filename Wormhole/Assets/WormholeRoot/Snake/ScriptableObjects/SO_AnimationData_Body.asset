@@ -15,3 +15,4 @@ MonoBehaviour:
   rotationValues: 0
   amplitude: 3
   frequency: 10
+  isRandom: 0

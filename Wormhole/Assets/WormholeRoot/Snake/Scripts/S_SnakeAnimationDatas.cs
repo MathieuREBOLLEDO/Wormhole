@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class S_SnakeAnimationDatas : ScriptableObject
 {
+
     public float rotationValues;
 
     public float amplitude = 1.0f;
     public float frequency = 1.0f;
+
+    
 
 }

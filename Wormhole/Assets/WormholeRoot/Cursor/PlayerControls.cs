@@ -31,7 +31,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""PrimaryContact"",
                     ""type"": ""PassThrough"",
                     ""id"": ""c39fa1b9-0395-4bb0-beea-de7d8252686c"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Touch"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
@@ -43,7 +43,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

@@ -36,6 +36,7 @@ public class S_CursorController : MonoBehaviour
     [SerializeField]
     private GameObject portalPrefab;
     private GameObject portalPlaced;
+    private Vector3 portalPosition;
 
     [Header("Trail")]
     [SerializeField]
@@ -49,8 +50,7 @@ public class S_CursorController : MonoBehaviour
     #region Init
     private void Awake()
     {
-        mainCamera = Camera.main;
-        Debug.Log(mainCamera.name);
+        mainCamera = Camera.main;     
         playerControls = new PlayerControls();
     }
 
@@ -62,45 +62,93 @@ public class S_CursorController : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
-        // playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
-        // playerControls.Touch.PrimaryContact.started += EndTouchPrimary;
     }
     private void OnDisable()
     {
         playerControls.Disable();
-        // playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
-        // playerControls.Touch.PrimaryContact.started -= EndTouchPrimary;
     }
     #endregion
 
+    #region Touch
     public void StartTouchPrimary(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
             Vector2 readValue = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
-            Vector3 position = ConvertScreenToWorld(readValue);
+            StartCoroutine(checkPos(ctx, readValue));
 
-            //Debug.Log(readValue);
-            //Debug.Log(position);
-
-            position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
-            position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
-
-            InitPortal(position, transform.rotation);
-
-            SwipeStar(position, (float)ctx.startTime);
         }
     }
-
+       
     public void EndTouchPrimary(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled)
         {
             Vector3 position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
             SwipeEnd(position, (float)ctx.time);
+            StopCoroutine(checkPos(ctx, new Vector2()));
         }
     }
 
+    #endregion
+
+    #region Coroutine
+    private IEnumerator checkPos(InputAction.CallbackContext ctx, Vector2 touchInput)
+    {
+        if (touchInput == new Vector2())
+        {
+            yield return new WaitForEndOfFrame();
+            touchInput = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
+        }
+
+        portalPosition = ConvertScreenToWorld(touchInput);
+
+        //Debug.Log(readValue);
+        //Debug.Log(position);
+
+        portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
+        portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
+
+        InitPortal(portalPosition, transform.rotation);
+
+        SwipeStar(portalPosition, (float)ctx.startTime);
+        yield return null;
+
+    }
+
+    private IEnumerator lookAtDirection()
+    {
+        while (true)
+        {
+
+            Vector2 currentPos = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+
+            //Debug.Log(currentPos);
+
+            Vector3 direction = currentPos - startPosition;
+            //Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            if (portalPlaced != null)
+                portalPlaced.transform.rotation = rotation;
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator Trail()
+    {
+        while (true)
+        {
+            trail.transform.position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region Swipe
     private void SwipeStar(Vector2 position, float time)
     {
         startPosition = position;
@@ -118,37 +166,6 @@ public class S_CursorController : MonoBehaviour
         }
     }
 
-    private IEnumerator Trail()
-    {
-        while (true)
-        {
-            trail.transform.position = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
-            yield return null;
-        }
-    }
-
-    private IEnumerator lookAtDirection()
-    {
-        while (true)
-        {
-
-            Vector2 currentPos = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
-
-            Debug.Log(currentPos);
-
-            Vector3 direction = currentPos - startPosition;
-            //Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            if(portalPlaced!=null) 
-                portalPlaced.transform.rotation = rotation;
-
-            yield return null;
-        }
-    }
-
     private void SwipeEnd(Vector2 position, float time)
     {
         endPosition = position;
@@ -161,7 +178,7 @@ public class S_CursorController : MonoBehaviour
 
         if (isDebug)
         {
-            Debug.Log("<color=red> EndPosition : " + position + " || end time  : " + time + "</color>");
+            Debug.Log("<color=blue> EndPosition : " + position + " || end time  : " + time + "</color>");
         }
 
         DetectSwipe();
@@ -183,6 +200,8 @@ public class S_CursorController : MonoBehaviour
         }
     }
 
+    #endregion
+
     void InitPortal(Vector3 position, Quaternion rotation)
     {
 
@@ -197,8 +216,6 @@ public class S_CursorController : MonoBehaviour
 
         portalPlaced = tmpPortal;
     }
-
-
 
     #region Utils
 

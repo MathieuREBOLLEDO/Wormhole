@@ -150,6 +150,7 @@ public class S_SnakeBehavior : MonoBehaviour
            // }           
            // else
             part.GetComponent<S_SnakeBodyAnimation>().SetBodyColor(ColorUpdater(index));
+            part.GetComponent<S_SnakeBodyAnimation>().SetIdSnake(index,bodyParts.Count-1);
             index++;
         }
 

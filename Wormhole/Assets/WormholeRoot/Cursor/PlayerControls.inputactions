@@ -9,7 +9,7 @@
                     "name": "PrimaryContact",
                     "type": "PassThrough",
                     "id": "c39fa1b9-0395-4bb0-beea-de7d8252686c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Touch",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": true
@@ -21,7 +21,7 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
