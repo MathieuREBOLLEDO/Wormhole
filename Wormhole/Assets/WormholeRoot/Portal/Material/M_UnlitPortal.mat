@@ -50,11 +50,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _InnerRadius: 0.29
-    - _OuterRadius: 0.83
+    - _AlphaRadius: 1
+    - _InnerRadius: 0.39
+    - _OuterRadius: 1.5
     - _RingsSpeed: 0.4
-    - _TwirlSpeed: 0.4
-    - _TwirlStrengh: 3.7
+    - _TwirlSpeed: 0.5
+    - _TwirlStrengh: 3.91
     m_Colors:
     - _RingsColors: {r: 0, g: 0.9529411, b: 1, a: 0}
     - _TwirlColor: {r: 0, g: 0.9525309, b: 1, a: 0}
