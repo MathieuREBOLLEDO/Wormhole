@@ -65,7 +65,6 @@ MonoBehaviour:
   score: 0
   comboCounter: 0
   comboTimer: 0
-  startComboTimer: 0
   comboDuration: 4
   comboAmount: 0
 --- !u!223 &2302636916585763386

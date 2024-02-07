@@ -44,6 +44,6 @@ public class S_FoodManager : MonoBehaviour
         
         GameObject food = Instantiate(myFood, posToAppear,Quaternion.identity,transform);
 
-        food.GetComponent<S_FoodBehavior>().SetFood((FoodType)Random.Range(0,3));       
+        //food.GetComponent<S_FoodBehavior>().SetFood((FoodType)Random.Range(0,3));       
     }    
 }

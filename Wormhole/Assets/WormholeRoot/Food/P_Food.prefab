@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorPalette: {fileID: 11400000, guid: 3eb411e4d3cc59f44891db96bd0df993, type: 2}
   listeOfPoints: {fileID: 11400000, guid: cffd499d8cd8e19448751f0ac219d701, type: 2}
-  type: 0
-  amplitude: 16.4
+  type: 2
+  amplitude: 12.12
   frequency: 5
   thisRenderer: {fileID: 3756464826932572724}
 --- !u!50 &991850896764085249
