@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WormholeRoot/Scenes/Sandbox.unity
+    path: Assets/WormholeRoot/Scenes/Sandbox_Green.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a0102c5f1e12e8743b2e26ae6b01e5d7,

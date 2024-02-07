@@ -7,4 +7,6 @@ public interface IEatable
     //public int points { set; }
     public void Eat();
 
+    public int GetPoint();
+
 }

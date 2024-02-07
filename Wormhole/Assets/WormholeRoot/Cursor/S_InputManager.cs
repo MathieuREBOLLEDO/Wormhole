@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 //using UnityEngine.InputSystem.EnhancedTouch;
 
-public class S_CursorController : MonoBehaviour
+public class S_InputManager: MonoBehaviour
 {
     private PlayerControls playerControls;
     //private PlayerInput playerInput;

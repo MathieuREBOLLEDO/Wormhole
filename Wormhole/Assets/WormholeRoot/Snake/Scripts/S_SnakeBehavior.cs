@@ -20,8 +20,9 @@ public class S_SnakeBehavior : MonoBehaviour
 
     //public S_SnakeFeedbacks snakeFeedbacks;
 
-    [Header("PortalManager")]
-    [SerializeField] public S_GetPortalManager portalManager;   
+    [Header("Other Manager")]
+    [SerializeField] public S_GetPortalManager portalManager;
+    [SerializeField] private S_GetHUDManager hud;
 
     private Vector3 direction;
 
@@ -103,11 +104,18 @@ public class S_SnakeBehavior : MonoBehaviour
 
         if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
         {
-            objecCollide.GetComponent<IEatable>().Eat();
-            fEatFood?.PlayFeedbacks();
-            GrowSnake();
+            EatFood(objecCollide);
+            
         }
     }  
+
+    void EatFood(GameObject other)
+    {
+        other.GetComponent<IEatable>().Eat();
+        fEatFood?.PlayFeedbacks();
+        hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
+        GrowSnake();
+    }
 
     void AddSegment()
     {
@@ -217,4 +225,5 @@ public class S_SnakeBehavior : MonoBehaviour
 
         isInitialized = true;
     }
+
 }

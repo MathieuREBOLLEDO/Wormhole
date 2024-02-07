@@ -2,37 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_FoodBehavior :MonoBehaviour, IEatable
+public class S_FoodBehavior : MonoBehaviour, IEatable
 {
     [SerializeField] private S_FoodColorPalette colorPalette;
     [SerializeField] private S_FoodPoints listeOfPoints;
 
     [Header("Datas")]
     [SerializeField] private FoodType type;
-    public int thisPoint;
+    private int thisPoint;
 
-    [SerializeField]
-    [Range(0f, 360f)]
-    private float rotationSpeed;
+    
+
     private Vector3 rotationAxis;
+    [SerializeField]
+    [Range(0, 20f)] private float amplitude = 15;
+    [SerializeField]
+    [Range(0f, 10f)] private float frequency = 5;
+    private float angle;
+    private float startingAngle;
 
     [SerializeField] private MeshRenderer thisRenderer;    
 
 
-
-    public void Eat()
-    {
-        Destroy(gameObject);
-    }
-
     void Start()
     {
-        rotationAxis = transform.up;
+        rotationAxis = transform.forward;
+        startingAngle = Random.Range(-amplitude, amplitude)-90;
+        transform.rotation = Quaternion.AngleAxis(startingAngle, rotationAxis);
+        StartCoroutine(OscillateRotation());
+    }
+
+    private IEnumerator OscillateRotation()
+    {
+        while(true) 
+        {            
+            angle = Mathf.Sin((Time.time * frequency)+ Mathf.Deg2Rad*startingAngle ) * amplitude;
+
+            transform.rotation *= Quaternion.AngleAxis( angle, rotationAxis);
+            
+            yield return null;
+        }
     }
 
     void Update ()
     {
-        transform.rotation *= Quaternion.AngleAxis(rotationSpeed*Time.deltaTime,rotationAxis);
+       // transform.rotation *= Quaternion.AngleAxis(rotationSpeed*Time.deltaTime,rotationAxis);
     }
 
     public void SetFood( FoodType newType)
@@ -49,5 +63,15 @@ public class S_FoodBehavior :MonoBehaviour, IEatable
     private void SetPoints()
     {
         thisPoint = listeOfPoints.points[(int)type];
+    }
+
+    public void Eat()
+    {
+        Destroy(gameObject);
+    }
+
+    public int GetPoint()
+    {
+        return thisPoint;
     }
 }

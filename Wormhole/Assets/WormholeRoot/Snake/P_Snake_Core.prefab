@@ -91,6 +91,7 @@ MonoBehaviour:
   fTeleport: {fileID: 7041358725146139287}
   fEatPortal: {fileID: 2128817273314412924}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
+  hud: {fileID: 11400000, guid: c36d2dce10b0544409821f190917c022, type: 2}
   isInvulnerable: 1
 --- !u!114 &3079837284428366374
 MonoBehaviour:

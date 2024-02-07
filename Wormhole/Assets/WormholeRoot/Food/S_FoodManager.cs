@@ -30,20 +30,20 @@ public class S_FoodManager : MonoBehaviour
         while (true)
         {
             SpawFood();
-            float randomTime = Random.Range(1f, 5f); // Change the range as needed
+            float randomTime = Random.Range(0.5f, 2.5f); // Change the range as needed
             yield return new WaitForSeconds(randomTime); // Wait for a random time
         }
     }
 
     private void SpawFood()
     {
-        Vector3 posToAppear = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y), 0);
+        Vector3 posToAppear = new Vector3(
+            Random.Range(-screenBounds.x, screenBounds.x),
+            Random.Range(-screenBounds.y, screenBounds.y),
+            0);
         
-        GameObject food = Instantiate(myFood, posToAppear,Quaternion.AngleAxis(Random.Range(0,360f),Vector3.up),transform);
+        GameObject food = Instantiate(myFood, posToAppear,Quaternion.identity,transform);
 
-        food.GetComponent<S_FoodBehavior>().SetFood((FoodType)Random.Range(0,3));
-
-    }
-
-    
+        food.GetComponent<S_FoodBehavior>().SetFood((FoodType)Random.Range(0,3));       
+    }    
 }

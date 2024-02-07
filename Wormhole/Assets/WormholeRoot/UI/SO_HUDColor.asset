@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4d4c373ffbc374589a5a9f1601c1b2, type: 3}
-  m_Name: SO_FoodColorPalette
+  m_Script: {fileID: 11500000, guid: 1b1623b9441e7a941b118fa1ba5bcf73, type: 3}
+  m_Name: SO_HUDColor
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0.5471698, g: 0.26847118, b: 0, a: 1}
-  - {r: 0, g: 0.26059318, b: 0.5, a: 0}
-  - {r: 1, g: 0, b: 0.7671118, a: 0}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  bannerColor: {r: 0, g: 0, b: 0, a: 0}
