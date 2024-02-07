@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 //using UnityEngine.InputSystem.EnhancedTouch;
 
-public class S_InputManager: MonoBehaviour
+public class S_InputManager : MonoBehaviour
 {
     private PlayerControls playerControls;
     //private PlayerInput playerInput;
@@ -50,7 +50,7 @@ public class S_InputManager: MonoBehaviour
     #region Init
     private void Awake()
     {
-        mainCamera = Camera.main;     
+        mainCamera = Camera.main;
         playerControls = new PlayerControls();
     }
 
@@ -76,10 +76,9 @@ public class S_InputManager: MonoBehaviour
         {
             Vector2 readValue = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
             StartCoroutine(checkPos(ctx, readValue));
-
         }
     }
-       
+
     public void EndTouchPrimary(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled)
@@ -103,9 +102,6 @@ public class S_InputManager: MonoBehaviour
 
         portalPosition = ConvertScreenToWorld(touchInput);
 
-        //Debug.Log(readValue);
-        //Debug.Log(position);
-
         portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
         portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
 
@@ -113,20 +109,15 @@ public class S_InputManager: MonoBehaviour
 
         SwipeStar(portalPosition, (float)ctx.startTime);
         yield return null;
-
     }
 
     private IEnumerator lookAtDirection()
     {
         while (true)
         {
-
             Vector2 currentPos = ConvertScreenToWorld(playerControls.Touch.PrimaryPosition.ReadValue<Vector2>());
 
-            //Debug.Log(currentPos);
-
-            Vector3 direction = currentPos - startPosition;
-            //Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+            Vector3 direction = currentPos - startPosition;            
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);

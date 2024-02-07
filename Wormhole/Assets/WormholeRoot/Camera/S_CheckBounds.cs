@@ -12,12 +12,7 @@ public class S_CheckBounds : MonoBehaviour
     {    
         screenBounds = cameraBounds.GetCameraBorder(0.15f);
     }
-/*
-    void Update()
-    {
-        CheckForBounce();        
-    }
-*/
+
     private void OnDrawGizmos()
     {
         cameraBounds.DisplayGizmos(screenBounds, Color.red);
