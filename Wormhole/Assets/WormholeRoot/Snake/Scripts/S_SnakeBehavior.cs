@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 //using System.Drawing;
 using UnityEngine;
 //using Color = Unity.Color;
@@ -8,24 +9,31 @@ using UnityEngine;
 public class S_SnakeBehavior : MonoBehaviour
 {
     [SerializeField] Transform bodysParent;
+
     [Header("Datas")]
     public S_SnakeData snakeData;
     public S_SnakePrefab snakePrefab;
     public S_SnakeColorPalette colorPalette;
 
+    #region Feebacks    
     [Header("Feedbacks")]
+    [SerializeField] GameObject floatingText;
     [SerializeField] MMF_Player fEatFood;
     [SerializeField] MMF_Player fTeleport;
     [SerializeField] MMF_Player fEatPortal;
-
-    //public S_SnakeFeedbacks snakeFeedbacks;
+    [SerializeField] MMF_Player fDestroyPortal;
+    #endregion
 
     [Header("Other Manager")]
-    [SerializeField] public S_GetPortalManager portalManager;
+    [SerializeField] private S_GetPortalManager portalManager;
     [SerializeField] private S_GetHUDManager hud;
 
+    #region VarPrivate
+    [SerializeField] bool isInvulnerable;
+    bool firstUseOnePortal = false;
+    bool isInitialized = false;
+    bool isDead = false;
     private Vector3 direction;
-
     private S_CheckBounds checkBounds;
 
     #region List
@@ -36,18 +44,15 @@ public class S_SnakeBehavior : MonoBehaviour
     
     private List <float> listOfAlpha = new List<float>();
     #endregion
+    #endregion
 
-    [SerializeField] bool isInvulnerable;
-
-    bool isInitialized = false;
-    bool isDead = false;
-    
-
+    #region Init
     void Awake()
     {
         Application.targetFrameRate = 30;
         //GameObject head = GameObject.Instantiate(snakePrefab.snakeHead,bodysParent);
         S_SnakeBodyAnimation head = GetComponentInChildren<S_SnakeBodyAnimation>();
+        head.GetComponent<Collider2D>().enabled = false;
         bodyParts.Add(head.gameObject);
         bodyAnimations.Add(head);
         listOfAlpha.Add(0f);      
@@ -63,14 +68,33 @@ public class S_SnakeBehavior : MonoBehaviour
 
     }
 
+    IEnumerator InitSnake(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        for (int i = 0; i < snakeData.initSize; i++)
+        {
+            GrowSnake();
+            if(i!=snakeData.initSize-1) 
+            {
+                bodyParts[i+1].GetComponent<Collider2D>().enabled = false; // deactivate collider 2d for the 2 element following the head
+            }
+        }
+        isInvulnerable = false;
+        bodyParts[0].GetComponent<Collider2D>().enabled = true;    
+        isInitialized = true;
+        StopCoroutine(InitSnake(0));
+    }
+    #endregion
+
     void Update()
     {
         checkBounds.CheckForBounds();
 
-        if (!isDead)
-        {
-            AddSegment();
+        DebugInput();
 
+        if (!isDead)
+        {          
             transform.position += direction * snakeData.snakeSpeed * Time.deltaTime;
 
             positionHistory.Insert(0, transform.position);
@@ -104,33 +128,19 @@ public class S_SnakeBehavior : MonoBehaviour
 
         if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
         {
-            EatFood(objecCollide);
-            
+            EatFood(objecCollide);            
         }
-    }  
-
-    void EatFood(GameObject other)
-    {
-        other.GetComponent<IEatable>().Eat();
-        fEatFood?.PlayFeedbacks();
-        hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
-        GrowSnake();
     }
 
-    void AddSegment()
+    #region Behavior
+    private void MoveBodyBehavior()
     {
-      //  if (Input.GetKeyDown(KeyCode.A))
-     //   {
-         //   GrowSnake();
-       // }
-      //
-      //  /*
-      //  if( Input.GetMouseButtonDown(0))
-      //  {
-      //      GrowSnake();
-      //  }*/
-      //
-      //  if (Input.GetKeyDown(KeyCode.Space)) { CallDeath(); }
+        if (bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>() != null)
+        {
+            Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>());
+        }
+
+        bodyParts[bodyParts.Count - 1].AddComponent<S_SnakeBodyBehavior>();
     }
 
     void TeleportSnake(GameObject portal)
@@ -141,9 +151,24 @@ public class S_SnakeBehavior : MonoBehaviour
         direction = transform.right;
     }
 
+    void EatFood(GameObject other)
+    {
+        other.GetComponent<IEatable>().Eat();
+
+        int pointsToDisplay = other.GetComponent<IEatable>().GetPoint();
+        DisplayFloatingText(pointsToDisplay, bodyParts[0].transform.position);
+
+        fEatFood?.PlayFeedbacks();
+        hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
+
+        GrowSnake();
+    }
+
     private void GrowSnake()
     {
-        GameObject body = GameObject.Instantiate(snakePrefab.snakeBody, bodysParent);
+        int newId = bodyParts.Count;
+        Vector3 tmpPosition = positionHistory[Mathf.Min(newId * (snakeData.snakeBodyGap / 10), positionHistory.Count - 1)];
+        GameObject body = GameObject.Instantiate(snakePrefab.snakeBody, tmpPosition,Quaternion.identity, bodysParent);
         bodyParts.Add(body);
         bodyAnimations.Add(body.GetComponent<S_SnakeBodyAnimation>());
         listOfAlpha.Add(0f);
@@ -152,11 +177,6 @@ public class S_SnakeBehavior : MonoBehaviour
 
         foreach(var part in bodyParts)
         {            
-           // if (index!=0)
-           // {
-           //     part.GetComponentInChildren<MeshRenderer>().material.color = ColorUpdater(index);               
-           // }           
-           // else
             part.GetComponent<S_SnakeBodyAnimation>().SetBodyColor(ColorUpdater(index));
             part.GetComponent<S_SnakeBodyAnimation>().SetIdSnake(index,bodyParts.Count-1);
             index++;
@@ -184,26 +204,24 @@ public class S_SnakeBehavior : MonoBehaviour
         return colorToReturn;
     }
 
-    private void MoveBodyBehavior()
-    {
-        if (bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>() != null)
-        {
-            Destroy(bodyParts[bodyParts.Count - 2].GetComponent<S_SnakeBodyBehavior>());
-        }
-
-        bodyParts[bodyParts.Count - 1].AddComponent<S_SnakeBodyBehavior>();
-    }
-
     public void CallDeath()
     {
-        if( isInitialized && !isInvulnerable)
+        if (isInitialized && !isInvulnerable)
         {
             Debug.Log("<color=red>DEATH!!!</color>");
             isDead = true;
             bodyParts[0].GetComponent<S_SnakeHeadBehavior>().deathFeedback?.PlayFeedbacks();
             StartCoroutine(DestroySnake());
         }
-        
+    }
+    #endregion
+
+    void DisplayFloatingText(int points, Vector3 position)
+    {
+        GameObject tmpText = GameObject.Instantiate(floatingText, position, Quaternion.identity, bodysParent);
+        //tmpText.GetComponentInChildren<TextMesh>().text = points.ToString();
+        tmpText.GetComponentInChildren<TextMeshPro>().text = points.ToString();
+        Destroy(tmpText,1f);
     }
 
     public void CallDestroyPortals(GameObject portal)
@@ -214,20 +232,20 @@ public class S_SnakeBehavior : MonoBehaviour
     IEnumerator DestroySnake()
     {
         for (int i = bodyParts.Count - 1 ; i >= 0; i--)
-        {            
+        {
+            int points = 50;
             bodyParts[i].GetComponent<S_SnakeBodyAnimation>().deathFeedback?.PlayFeedbacks();
+            DisplayFloatingText(points, bodyParts[i].transform.position);
             yield return new WaitForSeconds(0.15f);
         } 
-    }
+        StopCoroutine(DestroySnake());
+    }    
 
-    IEnumerator InitSnake(float delayTime)
+    void DebugInput()
     {
-        yield return new WaitForSeconds(delayTime);
-
-        for (int i = 0; i < snakeData.initSize; i++)
-            GrowSnake();
-
-        isInitialized = true;
+        if (Input.GetKey(KeyCode.A)) 
+        {
+            CallDeath();
+        }
     }
-
 }

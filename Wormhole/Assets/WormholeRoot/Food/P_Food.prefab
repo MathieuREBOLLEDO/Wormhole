@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7319817998317264034}
   - component: {fileID: 991850896764085249}
   - component: {fileID: 7985601859727165210}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: P_Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1119860319100518778}
   - component: {fileID: 1435586266441236627}
   - component: {fileID: 3756464826932572724}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

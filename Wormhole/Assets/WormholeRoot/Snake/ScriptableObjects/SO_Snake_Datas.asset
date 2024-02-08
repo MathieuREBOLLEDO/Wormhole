@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SO_Snake_Datas
   m_EditorClassIdentifier: 
   initSize: 3
-  snakeSpeed: 4.01
-  snakeBodyGap: 29
+  snakeSpeed: 1.23
+  snakeBodyGap: 70

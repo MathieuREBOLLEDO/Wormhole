@@ -29,7 +29,7 @@ public class S_FoodBehavior : MonoBehaviour, IEatable
 
     void Awake()
     {
-        SetFood((FoodType)Random.Range(0, 3));
+        SetFood((FoodType)Random.Range(0,3));
         //SetFood(type);
     }
 

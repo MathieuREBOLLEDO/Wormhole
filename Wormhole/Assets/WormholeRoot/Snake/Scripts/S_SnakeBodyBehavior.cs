@@ -5,28 +5,25 @@ using UnityEngine;
 
 public class S_SnakeBodyBehavior : MonoBehaviour
 {
-    private GameObject portalCollide;
-    
+    GameObject snakeCore;
+    //private GameObject portalCollide;
+
+    private void Start()
+    {
+        snakeCore = transform.parent.transform.parent.gameObject;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
        DestroyPortals(collision.gameObject);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (portalCollide == null)
-        {
-            DestroyPortals(collision.gameObject);
-            portalCollide = null;
-        }
-    }
-
     private void DestroyPortals(GameObject portal) 
     {
-        if(portal.CompareTag("Portal"))
+        if(portal.CompareTag("PortalDetection"))
         {
-            portalCollide = portal;
-            GetComponentInParent<S_SnakeBehavior>().CallDestroyPortals(portal);
+            portal = portal.transform.parent.gameObject;            
+            snakeCore.GetComponentInParent<S_SnakeBehavior>().CallDestroyPortals(portal);
         }
     }
 }

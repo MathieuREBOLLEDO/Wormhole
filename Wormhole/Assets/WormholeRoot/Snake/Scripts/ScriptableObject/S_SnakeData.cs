@@ -10,9 +10,9 @@ public class S_SnakeData : ScriptableObject
     //public Quaternion snakeRotation;
 
     public int initSize = 2;
-    [Range(1f , 20f)]
+    [Range(1f , 5f)]
     public float snakeSpeed = 0.2f;
-    [Range(1 , 50)]
+    [Range(10 , 70)]
     public int snakeBodyGap = 10;
 
 }

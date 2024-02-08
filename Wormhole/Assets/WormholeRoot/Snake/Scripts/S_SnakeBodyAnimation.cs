@@ -1,13 +1,16 @@
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
+using TMPro;
 using UnityEngine;
 
 public class S_SnakeBodyAnimation : MonoBehaviour
 {
     [SerializeField] GameObject bodyRenderer;
-    [SerializeField] private S_SnakeAnimationDatas datasAnim;
 
+    [Header("Scriptable Objects")]
+    [SerializeField] private S_SnakeAnimationDatas datasAnim;
     [SerializeField] public MMF_Player deathFeedback;
 
     private float idSnake;
@@ -19,18 +22,18 @@ public class S_SnakeBodyAnimation : MonoBehaviour
     private void Start()
     {
         if( isRandom)
-            startTime = Time.time + Random.Range(0f,1);    
+            startTime = Time.time + Random.Range(0f,1);
     }
 
     public void AnimateBody()
     {
-        float yPos;
+        float xPos;
         if (isRandom)
-            yPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude*Time.deltaTime;
+            xPos = Mathf.Sin((Time.time - startTime) * datasAnim.frequency) * datasAnim.amplitude*Time.deltaTime;
         else
-            yPos = Mathf.Sin((Time.time - (Time.time)+idSnake)*datasAnim.frequency)*datasAnim.amplitude*Time.deltaTime;
+            xPos = Mathf.Sin((Time.time - (Time.time)+idSnake)*datasAnim.frequency)*datasAnim.amplitude*Time.deltaTime;
 
-        bodyRenderer.transform.localPosition = new Vector3(bodyRenderer.transform.localPosition.x, yPos, bodyRenderer.transform.localPosition.z);
+        bodyRenderer.transform.localPosition = new Vector3(xPos,bodyRenderer.transform.localPosition.y, bodyRenderer.transform.localPosition.z);
     }
 
     public void SetIdSnake(int id, int snakeSize)

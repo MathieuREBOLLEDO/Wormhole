@@ -88,9 +88,12 @@ MonoBehaviour:
   snakeData: {fileID: 11400000, guid: 2e812cc1e554354408043e18df4c888c, type: 2}
   snakePrefab: {fileID: 11400000, guid: de4d98c265a2a6f4ea4724fe60775740, type: 2}
   colorPalette: {fileID: 11400000, guid: 07e4e5c9113d8bb4b93dc9048ec7a12c, type: 2}
+  floatingText: {fileID: 7023723335024900433, guid: 0b6d409b96bcc3a43a81575c91dfaf76,
+    type: 3}
   fEatFood: {fileID: 5725429238896153623}
   fTeleport: {fileID: 7041358725146139287}
   fEatPortal: {fileID: 2128817273314412924}
+  fDestroyPortal: {fileID: 7664527954723054526}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
   hud: {fileID: 11400000, guid: c36d2dce10b0544409821f190917c022, type: 2}
   isInvulnerable: 1
@@ -1513,6 +1516,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e146ee03e3b6b534ea8cf085e2b0a170, type: 3}
+--- !u!114 &7664527954723054526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2364042527261357797, guid: e146ee03e3b6b534ea8cf085e2b0a170,
+    type: 3}
+  m_PrefabInstance: {fileID: 5373669249938478427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9044897378262967705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3969630087686140098, guid: e146ee03e3b6b534ea8cf085e2b0a170,

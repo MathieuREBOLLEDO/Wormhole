@@ -12,7 +12,6 @@ public class S_SnakeHeadBehavior : MonoBehaviour
         {
             GetComponentInParent<S_SnakeBehavior>().CallDeath();
             Destroy(GetComponent<Collider>());
-            Destroy(this);
         }        
     }
 }

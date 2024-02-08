@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyRenderer: {fileID: 8422596310818737068}
+  pivotFloatingText: {fileID: 0}
+  centerFloatingText: {fileID: 0}
   datasAnim: {fileID: 11400000, guid: 49cb004352f78cd40b2fe543270651a6, type: 2}
   deathFeedback: {fileID: 5409848013867945759}
 --- !u!58 &1727465662317143280
