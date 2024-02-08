@@ -206,6 +206,10 @@ public class S_SnakeBehavior : MonoBehaviour
         
     }
 
+    public void CallDestroyPortals(GameObject portal)
+    {
+        portalManager.myPortalManager.DestroyMultiplePortals(portal);
+    }
 
     IEnumerator DestroySnake()
     {
