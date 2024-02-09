@@ -61,6 +61,7 @@ public class S_HUDManager : MonoBehaviour
     {
         score += points;
         textScore.text = score.ToString();
+        
     }
 
     private void SetCombo()
