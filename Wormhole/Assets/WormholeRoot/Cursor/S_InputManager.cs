@@ -33,8 +33,7 @@ public class S_InputManager : MonoBehaviour
     [Header("Portal")]
     [SerializeField]
     private S_GetPortalManager portalManager;
-    [SerializeField]
-    private GameObject portalPrefab;
+    
     private GameObject portalPlaced;
     private Vector3 portalPosition;
 
@@ -195,9 +194,7 @@ public class S_InputManager : MonoBehaviour
 
     void InitPortal(Vector3 position, Quaternion rotation)
     {
-
-        GameObject tmpPortal = GameObject.Instantiate(portalPrefab, position, rotation, portalManager.myPortalManager.transform);
-        portalManager.myPortalManager.AddPortalToList(tmpPortal);
+        GameObject tmpPortal = portalManager.myPortalManager.PlacePortal(position,rotation);
 
         if (isDebug)
         {

@@ -144,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ca05b3df66d8b4289229f877004e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalRenderer: {fileID: 1238814546493002856}
+  arrowRenderer: {fileID: 3515847790784217391}
 --- !u!58 &7330549154217209462
 CircleCollider2D:
   m_ObjectHideFlags: 0
