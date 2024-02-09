@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class S_PortalManager : MonoBehaviour
     [SerializeField] private S_GetPortalManager instancePortalManager;
     [SerializeField] private S_PortalColorPalette colorPalette;
     [SerializeField] private GameObject portal;
+
+    [SerializeField] private MMF_Player fb_PlacePortal;
 
     private int idColorToUse = -1;
 
@@ -22,6 +25,7 @@ public class S_PortalManager : MonoBehaviour
         AddPortalToList(portalPlaced);
 
         SetColor(portalPlaced);
+        fb_PlacePortal?.PlayFeedbacks();
         return portalPlaced;
     }
 

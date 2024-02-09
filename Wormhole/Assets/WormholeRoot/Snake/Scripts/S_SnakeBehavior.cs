@@ -123,7 +123,6 @@ public class S_SnakeBehavior : MonoBehaviour
             {
                 portalManager.myPortalManager.DestroyPortal(objecCollide);
             }
-
         }
 
         if (objecCollide.GetComponent<MonoBehaviour>() as IEatable != null)
@@ -149,6 +148,7 @@ public class S_SnakeBehavior : MonoBehaviour
         transform.position = portalManager.myPortalManager.GetPortal(portal).transform.position;
         transform.rotation = portalManager.myPortalManager.GetPortal(portal).transform.rotation;
         direction = transform.right;
+        fTeleport?.PlayFeedbacks();
     }
 
     void EatFood(GameObject other)
@@ -227,6 +227,7 @@ public class S_SnakeBehavior : MonoBehaviour
     public void CallDestroyPortals(GameObject portal)
     {
         portalManager.myPortalManager.DestroyMultiplePortals(portal);
+        fDestroyPortal?.PlayFeedbacks();
     }
 
     IEnumerator DestroySnake()
