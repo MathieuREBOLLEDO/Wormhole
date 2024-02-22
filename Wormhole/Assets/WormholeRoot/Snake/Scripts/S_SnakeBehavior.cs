@@ -70,7 +70,7 @@ public class S_SnakeBehavior : MonoBehaviour
 
     IEnumerator InitSnake(float delayTime)
     {
-        yield return new WaitForSeconds(delayTime);
+        
 
         for (int i = 0; i < snakeData.initSize; i++)
         {
@@ -78,6 +78,7 @@ public class S_SnakeBehavior : MonoBehaviour
             if(i!=snakeData.initSize-1) 
             {
                 bodyParts[i+1].GetComponent<Collider2D>().enabled = false; // deactivate collider 2d for the 2 element following the head
+                yield return new WaitForEndOfFrame();
             }
         }
         isInvulnerable = false;
