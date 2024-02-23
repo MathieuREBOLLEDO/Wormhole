@@ -8,12 +8,6 @@ public class S_HUDManager : MonoBehaviour
 {
     #region Variables
     [SerializeField] S_GetHUDManager thisManager;
-    [SerializeField] S_HUDPaletteColor colorPalette;
-
-    [Header("Background Color")]
-    [SerializeField] Image bannerTopImage;
-    [SerializeField] Camera backgroundCamera;
-    [SerializeField] Image bannerBotImage;
 
     [Header("Score")]
     [SerializeField] TextMeshProUGUI textScore;
@@ -21,7 +15,7 @@ public class S_HUDManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textCombo;
 
 
-    [SerializeField] private int score;
+    [SerializeField] private int score = 0;
     [SerializeField] private int comboCounter;
     [SerializeField] private float comboTimer;
     [SerializeField] private float comboDuration = 4f;
@@ -34,11 +28,7 @@ public class S_HUDManager : MonoBehaviour
         thisManager.hudManager = this;
         SetScore(0);
         ResetCombo();
-        backgroundCamera = GameObject.Find("Camera_UI").GetComponent<Camera>();
-        ResetCombo();
     }
-
-
 
     public void UpdateCombo(int points)
     {
@@ -60,8 +50,7 @@ public class S_HUDManager : MonoBehaviour
     private void SetScore(int points)
     {
         score += points;
-        textScore.text = score.ToString();
-        
+        textScore.text = score.ToString();        
     }
 
     private void SetCombo()

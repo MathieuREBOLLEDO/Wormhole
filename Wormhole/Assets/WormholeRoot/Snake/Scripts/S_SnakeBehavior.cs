@@ -63,34 +63,33 @@ public class S_SnakeBehavior : MonoBehaviour
     void Start()
     {
         direction = transform.right;
-        StartCoroutine(InitSnake(0.15f));
-        //InitSnake(0f);
-
+        Invoke("InitSnake",0.15f);
     }
 
-    IEnumerator InitSnake(float delayTime)
+    private void InitSnake()
+    {   
+        for (int i = 0; i < snakeData.initSize; i++)
+            GrowSnake();
+        bodyParts[0].GetComponent<Collider2D>().enabled = true;    
+    
+    }
+    public void EnableCollision()
     {
-        
-
         for (int i = 0; i < snakeData.initSize; i++)
         {
-            GrowSnake();
-            if(i!=snakeData.initSize-1) 
+            if (i != snakeData.initSize - 1)
             {
-                bodyParts[i+1].GetComponent<Collider2D>().enabled = false; // deactivate collider 2d for the 2 element following the head
-                yield return new WaitForEndOfFrame();
+                bodyParts[i + 1].GetComponent<Collider2D>().enabled = false; // deactivate collider 2d for the 2 element following the head
             }
         }
-        isInvulnerable = false;
-        bodyParts[0].GetComponent<Collider2D>().enabled = true;    
         isInitialized = true;
-        StopCoroutine(InitSnake(0));
     }
     #endregion
 
     void Update()
     {
-        checkBounds.CheckForBounds();
+        if(isInitialized)
+            checkBounds.CheckForBounds();
 
         DebugInput();
 
@@ -160,7 +159,7 @@ public class S_SnakeBehavior : MonoBehaviour
         DisplayFloatingText(pointsToDisplay, bodyParts[0].transform.position);
 
         fEatFood?.PlayFeedbacks();
-        hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
+        //hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
 
         GrowSnake();
     }

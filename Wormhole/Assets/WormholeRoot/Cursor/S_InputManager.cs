@@ -27,6 +27,7 @@ public class S_InputManager : MonoBehaviour
     private Camera mainCamera;
 
     private Vector2 screenBounds;
+    private Vector2 screenInputLimits;
     [SerializeField]
     private S_CameraBoundaries cameraBoundaries;
 
@@ -56,6 +57,7 @@ public class S_InputManager : MonoBehaviour
     private void Start()
     {
         screenBounds = cameraBoundaries.GetCameraBorder(-cameraBorderOffset);
+        screenInputLimits = cameraBoundaries.GetCameraBorder(cameraBorderOffset);
     }
 
     private void OnEnable()
@@ -101,13 +103,25 @@ public class S_InputManager : MonoBehaviour
 
         portalPosition = ConvertScreenToWorld(touchInput);
 
-        portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
-        portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
+        if (portalPosition.x >= -screenInputLimits.x && 
+            portalPosition.x <=  screenInputLimits.x &&
+            portalPosition.y >= -screenInputLimits.y &&
+            portalPosition.y <=  screenInputLimits.y )
 
-        InitPortal(portalPosition, transform.rotation);
+        {
+            portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
+            portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
 
-        SwipeStar(portalPosition, (float)ctx.startTime);
-        yield return null;
+            InitPortal(portalPosition, transform.rotation);
+
+            SwipeStar(portalPosition, (float)ctx.startTime);
+            yield return null;
+        }
+        else
+        {
+            Debug.Log("InputNotInBoard");
+            yield return null;
+        }   
     }
 
     private IEnumerator lookAtDirection()

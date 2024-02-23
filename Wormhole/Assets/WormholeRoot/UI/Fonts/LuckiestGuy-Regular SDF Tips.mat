@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LuckiestGuy-Regular SDF Variant
+  m_Name: LuckiestGuy-Regular SDF Tips
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 1251560815383487973, guid: 260cd816220c66a45b9eaf06d5c7c27e,
     type: 2}

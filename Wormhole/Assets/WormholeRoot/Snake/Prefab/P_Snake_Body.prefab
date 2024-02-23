@@ -49,8 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyRenderer: {fileID: 8422596310818737068}
-  pivotFloatingText: {fileID: 0}
-  centerFloatingText: {fileID: 0}
   datasAnim: {fileID: 11400000, guid: 49cb004352f78cd40b2fe543270651a6, type: 2}
   deathFeedback: {fileID: 5409848013867945759}
 --- !u!58 &1727465662317143280
@@ -60,7 +58,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113903413424857635}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
