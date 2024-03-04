@@ -145,6 +145,10 @@ public class S_SnakeBehavior : MonoBehaviour
     void TeleportSnake(GameObject portal)
     {
         portalManager.myPortalManager.GetPortal(portal).GetComponent<Collider2D>().enabled = false;
+
+        if (!isInitialized)
+            EnableCollision();
+
         transform.position = portalManager.myPortalManager.GetPortal(portal).transform.position;
         transform.rotation = portalManager.myPortalManager.GetPortal(portal).transform.rotation;
         direction = transform.right;

@@ -14,6 +14,8 @@ public class S_GameManager : MonoBehaviour
 {
     [SerializeField] S_GetGameManager gManager;
 
+    public bool isFirstInput = true;
+
     [SerializeField] GameObject soundManager;
 
     //[SerializeField] 

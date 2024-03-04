@@ -281,7 +281,7 @@ RectTransform:
   - {fileID: 3932314220490230847}
   m_Father: {fileID: 2398512131313448281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.85}
+  m_AnchorMin: {x: 0, y: 0.83}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -677,7 +677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2398512131313448281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -711,7 +711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisManager: {fileID: 11400000, guid: c36d2dce10b0544409821f190917c022, type: 2}
-  colorPalette: {fileID: 11400000, guid: c0af2448bcb996e43a95d4abdd39ed14, type: 2}
   textScore: {fileID: 830055197807678146}
   comboBar: {fileID: 2635141482055202186}
   textCombo: {fileID: 4428829749174195577}

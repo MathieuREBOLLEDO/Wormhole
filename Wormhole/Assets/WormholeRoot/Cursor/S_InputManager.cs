@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class S_InputManager : MonoBehaviour
 {
+    [SerializeField] S_GetGameManager gameManager;
     private PlayerControls playerControls;
+
     //private PlayerInput playerInput;
     //private InputAction touchPressAction;*
 
@@ -112,7 +114,17 @@ public class S_InputManager : MonoBehaviour
             portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
             portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
 
-            InitPortal(portalPosition, transform.rotation);
+
+            if (gameManager.gameManager.isFirstInput)
+            {
+                S_SnakeBehavior snake = FindObjectOfType<S_SnakeBehavior>();
+                Vector3 frontOfSnake = snake.transform.position + Vector3.up * 1f;
+                Debug.Log(frontOfSnake);
+                InitPortal(frontOfSnake, Quaternion.identity);
+                gameManager.gameManager.isFirstInput = false;
+            }
+
+            InitPortal(portalPosition, transform.rotation);           
 
             SwipeStar(portalPosition, (float)ctx.startTime);
             yield return null;
