@@ -105,35 +105,38 @@ public class S_InputManager : MonoBehaviour
 
         portalPosition = ConvertScreenToWorld(touchInput);
 
-        if (portalPosition.x >= -screenInputLimits.x && 
-            portalPosition.x <=  screenInputLimits.x &&
-            portalPosition.y >= -screenInputLimits.y &&
-            portalPosition.y <=  screenInputLimits.y )
-
+        if (!gameManager.gameManager.isInMenu)
         {
-            portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
-            portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
+            if (portalPosition.x >= -screenInputLimits.x &&
+                portalPosition.x <= screenInputLimits.x &&
+                portalPosition.y >= -screenInputLimits.y &&
+                portalPosition.y <= screenInputLimits.y)
 
-
-            if (gameManager.gameManager.isFirstInput)
             {
-                S_SnakeBehavior snake = FindObjectOfType<S_SnakeBehavior>();
-                Vector3 frontOfSnake = snake.transform.position + Vector3.up * 1f;
-                Debug.Log(frontOfSnake);
-                InitPortal(frontOfSnake, Quaternion.identity);
-                gameManager.gameManager.isFirstInput = false;
+                portalPosition.x = Mathf.Clamp(portalPosition.x, -screenBounds.x, screenBounds.x);
+                portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
+
+
+                if (gameManager.gameManager.isFirstInput)
+                {
+                    S_SnakeBehavior snake = FindObjectOfType<S_SnakeBehavior>();
+                    Vector3 frontOfSnake = snake.transform.position + Vector3.up * 1f;
+                    Debug.Log(frontOfSnake);
+                    InitPortal(frontOfSnake, Quaternion.identity);
+                    gameManager.gameManager.isFirstInput = false;
+                }
+
+                InitPortal(portalPosition, transform.rotation);
+
+                SwipeStar(portalPosition, (float)ctx.startTime);
+                yield return null;
             }
-
-            InitPortal(portalPosition, transform.rotation);           
-
-            SwipeStar(portalPosition, (float)ctx.startTime);
-            yield return null;
+            else
+            {
+                Debug.Log("InputNotInBoard");
+                yield return null;
+            }
         }
-        else
-        {
-            Debug.Log("InputNotInBoard");
-            yield return null;
-        }   
     }
 
     private IEnumerator lookAtDirection()
