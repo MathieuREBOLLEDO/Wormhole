@@ -27,7 +27,17 @@ public class S_GameManager : MonoBehaviour
     private void Awake()
     {
         gManager.gameManager = this;
-        //SceneManager.UnloadSceneAsync(0);
+    }
+
+    public void HideTips()
+    {
+        canvasTips.SetActive(false);
+        isFirstInput = false;
+    }
+
+    public bool GetFirstInput()   
+    {
+        return isFirstInput;
     }
 
 

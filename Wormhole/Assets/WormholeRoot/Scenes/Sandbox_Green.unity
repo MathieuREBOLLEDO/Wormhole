@@ -3904,7 +3904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1893432988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5453,6 +5453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas_Tuto
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623110775374254506, guid: 307182144f192d04daf6c87f1f946e76,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5764829012875730907, guid: 307182144f192d04daf6c87f1f946e76,
         type: 3}

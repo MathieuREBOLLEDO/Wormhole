@@ -117,13 +117,13 @@ public class S_InputManager : MonoBehaviour
                 portalPosition.y = Mathf.Clamp(portalPosition.y, -screenBounds.y, screenBounds.y);
 
 
-                if (gameManager.gameManager.isFirstInput)
+                if (gameManager.gameManager.GetFirstInput())
                 {
                     S_SnakeBehavior snake = FindObjectOfType<S_SnakeBehavior>();
                     Vector3 frontOfSnake = snake.transform.position + Vector3.up * 1f;
                     Debug.Log(frontOfSnake);
                     InitPortal(frontOfSnake, Quaternion.identity);
-                    gameManager.gameManager.isFirstInput = false;
+                    gameManager.gameManager.HideTips();
                 }
 
                 InitPortal(portalPosition, transform.rotation);
