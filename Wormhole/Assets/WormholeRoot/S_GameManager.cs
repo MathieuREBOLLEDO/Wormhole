@@ -16,7 +16,9 @@ public class S_GameManager : MonoBehaviour
 
     public bool isFirstInput = true;
 
-    public bool isInMenu = true  ;
+    public bool isInMenu = true;
+
+    [SerializeField] GameObject canvasTips;
 
     [SerializeField] GameObject soundManager;
 
