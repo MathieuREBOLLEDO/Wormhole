@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class S_SnakeBehavior : MonoBehaviour
 {
+    [SerializeField] S_GetGameManager gM;
     [SerializeField] Transform bodysParent;
 
     [Header("Datas")]
@@ -100,12 +101,16 @@ public class S_SnakeBehavior : MonoBehaviour
             positionHistory.Insert(0, transform.position);
 
             int index = 0;
-            foreach (var body in bodyParts)
+            Debug.Log(gM.gameManager.isInMenu);
+            if (!gM.gameManager.isInMenu)
             {
-                Vector3 point = positionHistory[Mathf.Min(index * (snakeData.snakeBodyGap/10), positionHistory.Count - 1)];
-                body.transform.position = point;
-                bodyAnimations[index].AnimateBody();
-                index++;
+                foreach (var body in bodyParts)
+                {
+                    Vector3 point = positionHistory[Mathf.Min(index * (snakeData.snakeBodyGap / 10), positionHistory.Count - 1)];
+                    body.transform.position = point;
+                    bodyAnimations[index].AnimateBody();
+                    index++;
+                }
             }
         }
     }

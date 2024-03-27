@@ -27,10 +27,12 @@ public class S_GameManager : MonoBehaviour
     private void Awake()
     {
         gManager.gameManager = this;
+        //PauseGame(true);
     }
 
     public void HideTips()
     {
+        PauseGame(false);
         canvasTips.SetActive(false);
         isFirstInput = false;
     }
@@ -38,6 +40,11 @@ public class S_GameManager : MonoBehaviour
     public bool GetFirstInput()   
     {
         return isFirstInput;
+    }
+
+    public void PauseGame(bool pauseState)
+    {
+        Time.timeScale = (pauseState )? 0 : 1;
     }
 
 
