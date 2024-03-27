@@ -216,13 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa03dd3a63ac5e45a02e903431c1d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 11400000, guid: d7a60e5c220a09a46ab2151ef155e63c, type: 2}
   minimunDistance: 0.2
   maximunTime: 1
   cameraBorderOffset: 0.15
   cameraBoundaries: {fileID: 11400000, guid: f4a8dcb8f99e964478f647d19501c813, type: 2}
   portalManager: {fileID: 11400000, guid: 1b864a85af3c970498269a63c3fdd43e, type: 2}
-  portalPrefab: {fileID: 2187409505166139151, guid: b6b5f07e61b3d704fb12e1487db4e4f8,
-    type: 3}
   trail: {fileID: 7485953729870501885}
   isDebug: 0
 --- !u!114 &6040935130411177082

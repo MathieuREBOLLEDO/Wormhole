@@ -1799,6 +1799,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2537810044124581016, guid: 573c3a43b65b61a46b84463d11caa865,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6796378279630343270, guid: 573c3a43b65b61a46b84463d11caa865,
         type: 3}
       propertyPath: m_Name
@@ -1809,6 +1814,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 6896064100019800042}
+    - target: {fileID: 7551659854863876969, guid: 573c3a43b65b61a46b84463d11caa865,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1847,6 +1857,21 @@ PrefabInstance:
     - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8223807959287102668, guid: 573c3a43b65b61a46b84463d11caa865,
@@ -4288,7 +4313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1893432988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,12 +4405,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2108629466171547612, guid: edcc42c4fc2925245a450c28bf82c48a,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 11400000, guid: d7a60e5c220a09a46ab2151ef155e63c,
-        type: 2}
     - target: {fileID: 2269571573547734945, guid: edcc42c4fc2925245a450c28bf82c48a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5344,6 +5363,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BackgroundShadow
       objectReference: {fileID: 0}
+    - target: {fileID: 8247098505191773142, guid: 690c9a541a96d6a419cd3a1e9a5172bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8955936899028746569, guid: 690c9a541a96d6a419cd3a1e9a5172bc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5479,6 +5503,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGradient
       objectReference: {fileID: 0}
+    - target: {fileID: 3199090638722492859, guid: 8cb51be5962e01c4baa6b7fa4aab0129,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222688057149549378, guid: 8cb51be5962e01c4baa6b7fa4aab0129,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 5285298683260500877, guid: 8cb51be5962e01c4baa6b7fa4aab0129,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5584,6 +5618,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 6896064100019800042}
+    - target: {fileID: 6082560517968411287, guid: 8cb51be5962e01c4baa6b7fa4aab0129,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5672,11 +5711,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5590588488626200244, guid: 5e68697e4c7e88348a6bd0e92749b0c4,
         type: 3}
-      propertyPath: isInMenu
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5590588488626200244, guid: 5e68697e4c7e88348a6bd0e92749b0c4,
-        type: 3}
       propertyPath: canvasTips
       value: 
       objectReference: {fileID: 1893432987}
@@ -5753,6 +5787,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 291110305574914376, guid: afcc1241b5c376843ad254d05caf6041,
+        type: 3}
+      propertyPath: far clip plane
+      value: 8.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 291110305574914376, guid: afcc1241b5c376843ad254d05caf6041,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4310322485472082339, guid: afcc1241b5c376843ad254d05caf6041,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5837,6 +5881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas_Tuto
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719277368188760828, guid: 307182144f192d04daf6c87f1f946e76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5764829012875730907, guid: 307182144f192d04daf6c87f1f946e76,
         type: 3}
@@ -5941,7 +5990,7 @@ PrefabInstance:
     - target: {fileID: 8542822838756785609, guid: 307182144f192d04daf6c87f1f946e76,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -74.40012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

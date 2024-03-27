@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gManager: {fileID: 11400000, guid: d7a60e5c220a09a46ab2151ef155e63c, type: 2}
   isFirstInput: 1
+  isInMenu: 1
+  canvasTips: {fileID: 0}
   soundManager: {fileID: 0}

@@ -101,7 +101,7 @@ public class S_SnakeBehavior : MonoBehaviour
             positionHistory.Insert(0, transform.position);
 
             int index = 0;
-            Debug.Log(gM.gameManager.isInMenu);
+            
             if (!gM.gameManager.isInMenu)
             {
                 foreach (var body in bodyParts)
