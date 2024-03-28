@@ -612,8 +612,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Snake_Head
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8333304674165947558, guid: afee83a5ea4cace4a9fd690807019448, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

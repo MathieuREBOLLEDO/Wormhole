@@ -28,6 +28,13 @@ public class S_HUDManager : MonoBehaviour
         thisManager.hudManager = this;
         SetScore(0);
         ResetCombo();
+
+        S_GameManager.UpdateScore += UpdateCombo;
+    }
+
+    private void OnDestroy()
+    {
+        S_GameManager.UpdateScore -= UpdateCombo;
     }
 
     public void UpdateCombo(int points)

@@ -3,36 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameState
-{
-    Menu,
-    Game,
-    Pause,
-}
 
 public class S_GameManager : MonoBehaviour
 {
     [SerializeField] S_GetGameManager gManager;
 
+    public bool isFirstTime;
+
     public bool isFirstInput = true;
 
     public bool isInMenu = true;
 
+    private bool isPause = true;
+
     [SerializeField] GameObject canvasTips;
+    [SerializeField] GameObject canvasTuto;
 
     [SerializeField] GameObject soundManager;
 
     //[SerializeField] 
 
+    #region Pause event
+
+    public delegate void PauseEvent(bool newPauseState);
+
+    public static event PauseEvent PauseOrUnPauseGame;
+
+    public static void TriggerPause(bool newPauseState)
+    {
+        if(PauseOrUnPauseGame != null)
+        {
+            PauseOrUnPauseGame(newPauseState);
+        }
+    }
+    #endregion
+
+    #region Score event
+
+    public delegate void ScoreEvent(int points);
+    public static event ScoreEvent UpdateScore;
+
+    public static void TriggerIncrementScore(int points)
+    {
+        if (UpdateScore != null)
+        {
+            UpdateScore(points);
+        }
+    }
+    #endregion
+
+    private void Start()
+    {
+        PauseOrUnPauseGame += SetIsPause;
+
+    }
+
+    private void OnDestroy()
+    {
+        PauseOrUnPauseGame -= SetIsPause;
+    }
+
+
     private void Awake()
     {
         gManager.gameManager = this;
-        //PauseGame(true);
+
+        if (isFirstTime)
+        {
+            canvasTuto.SetActive(true);
+        }
+        canvasTips.SetActive(true);
     }
 
     public void HideTips()
     {
-        PauseGame(false);
+        //SetPauseGame();
         canvasTips.SetActive(false);
         isFirstInput = false;
     }
@@ -42,9 +87,16 @@ public class S_GameManager : MonoBehaviour
         return isFirstInput;
     }
 
-    public void PauseGame(bool pauseState)
+    private void SetIsPause(bool newPauseState)
     {
-        Time.timeScale = (pauseState )? 0 : 1;
+        isPause = newPauseState;
+        isInMenu = newPauseState;
+        SetTimeScale();
+    }
+
+    public void SetTimeScale()
+    {
+        Time.timeScale = (isPause) ? 0 : 1;
     }
 
 

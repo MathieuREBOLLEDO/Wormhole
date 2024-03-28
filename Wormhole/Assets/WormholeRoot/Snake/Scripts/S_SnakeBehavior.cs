@@ -11,6 +11,8 @@ public class S_SnakeBehavior : MonoBehaviour
     [SerializeField] S_GetGameManager gM;
     [SerializeField] Transform bodysParent;
 
+    private bool gamePaused = false;
+
     [Header("Datas")]
     public S_SnakeData snakeData;
     public S_SnakePrefab snakePrefab;
@@ -65,6 +67,13 @@ public class S_SnakeBehavior : MonoBehaviour
     {
         direction = transform.right;
         Invoke("InitSnake",0.15f);
+
+        S_GameManager.PauseOrUnPauseGame += PauseSnake;
+    }
+
+    private void OnDestroy()
+    {
+        S_GameManager.PauseOrUnPauseGame -= PauseSnake;
     }
 
     private void InitSnake()
@@ -95,15 +104,15 @@ public class S_SnakeBehavior : MonoBehaviour
         DebugInput();
 
         if (!isDead)
-        {          
-            transform.position += direction * snakeData.snakeSpeed * Time.deltaTime;
-
-            positionHistory.Insert(0, transform.position);
-
-            int index = 0;
-            
-            if (!gM.gameManager.isInMenu)
+        {           
+            if (!gamePaused)
             {
+                transform.position += direction * snakeData.snakeSpeed * Time.deltaTime;
+
+                positionHistory.Insert(0, transform.position);
+
+                int index = 0;
+
                 foreach (var body in bodyParts)
                 {
                     Vector3 point = positionHistory[Mathf.Min(index * (snakeData.snakeBodyGap / 10), positionHistory.Count - 1)];
@@ -170,6 +179,7 @@ public class S_SnakeBehavior : MonoBehaviour
         fEatFood?.PlayFeedbacks();
         //hud.hudManager.UpdateCombo(other.GetComponent<IEatable>().GetPoint());
 
+        S_GameManager.TriggerIncrementScore(pointsToDisplay);
         GrowSnake();
     }
 
@@ -257,5 +267,10 @@ public class S_SnakeBehavior : MonoBehaviour
         {
             CallDeath();
         }
+    }
+
+    void PauseSnake(bool pauseState)
+    {
+        gamePaused = pauseState;
     }
 }
